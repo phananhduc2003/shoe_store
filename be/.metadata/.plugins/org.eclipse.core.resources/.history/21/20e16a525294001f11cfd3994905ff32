@@ -1,0 +1,12 @@
+package com.fullstack.mystore.helloworld;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class HelloWorld {
+	@Bean
+	public  String HelloWorld() {
+		return "Hello World";
+	}
+}

@@ -1,0 +1,28 @@
+package com.fullstack.mystore.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.repository.ProductRepository;
+
+
+@RestController
+public class ProductController {
+	
+	private ProductRepository productRepository;
+	
+	
+	public ProductController(ProductRepository productRepository) {
+		super();
+		this.productRepository = productRepository;
+	}
+
+
+	@GetMapping("/product")
+	public List<Product> allProduct() {
+		return productRepository.findAll();
+	}
+}

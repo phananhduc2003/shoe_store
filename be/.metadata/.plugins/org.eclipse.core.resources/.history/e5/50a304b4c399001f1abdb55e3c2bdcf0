@@ -1,0 +1,21 @@
+package com.fullstack.mystore.entity;
+
+import java.sql.Date;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+@Entity
+public class ShopOrder {
+	@Id
+	@GeneratedValue
+	private Integer id;
+	@Temporal(TemporalType.TIMESTAMP)
+    private Date dateOrder;
+	private double totalPrice;
+    private String statusOrder;
+    private String addressShipping;
+}

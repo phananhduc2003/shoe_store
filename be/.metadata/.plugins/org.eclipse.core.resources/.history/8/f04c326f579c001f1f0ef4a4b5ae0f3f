@@ -1,0 +1,59 @@
+package com.fullstack.mystore.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.entity.ProductCategoryBrand;
+import com.fullstack.mystore.entity.ProductCategoryPurpose;
+import com.fullstack.mystore.repository.ProductCategoryBrandRepository;
+import com.fullstack.mystore.repository.ProductCategoryPurposeRepository;
+import com.fullstack.mystore.repository.ProductRepository;
+
+
+@RestController
+public class ProductController {
+	
+	private ProductRepository productRepository;
+	
+	private ProductCategoryBrandRepository productCategoryBrandRepository;
+	
+	private ProductCategoryPurposeRepository productCategoryPurposeRepository;
+	
+	
+	public ProductController(ProductRepository productRepository,ProductCategoryBrandRepository productCategoryBrandRepository,ProductCategoryPurposeRepository productCategoryPurposeRepository) {
+		super();
+		this.productRepository = productRepository;
+		this.productCategoryBrandRepository = productCategoryBrandRepository;
+		this.productCategoryPurposeRepository = productCategoryPurposeRepository;
+	}
+
+
+	@GetMapping("home/product")
+	public List<Product> allProduct() {
+		return productRepository.findAll();
+	}
+	
+	
+	@GetMapping("home/product/byBrandAndPurpose")
+    public List<Product> getProductsByBrandAndPurpose(@RequestParam Integer brandId, 
+                                                      @RequestParam Integer purposeId) {
+        
+        ProductCategoryBrand brand = productCategoryBrandRepository.findById(brandId)
+                .orElseThrow(() -> new ResourceNotFoundException("Brand not found"));
+        
+        ProductCategoryPurpose purpose = productCategoryPurposeRepository.findById(purposeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Purpose not found"));
+        
+        // Tìm sản phẩm theo cả thương hiệu và mục đích
+        return productRepository.findByBrandAndPurpose(brand, purpose);
+    }
+	
+	
+		
+	
+}

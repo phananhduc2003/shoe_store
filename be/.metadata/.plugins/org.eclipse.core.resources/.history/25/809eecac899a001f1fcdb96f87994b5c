@@ -1,0 +1,11 @@
+INSERT INTO PRODUCT (ID, PRICE, PRODUCT_CATEGORY_ID, QUANTITY, DESCRIPTION, IMAGE, NAME) VALUES
+(1, 1000000, 1, 50, 'Casual sneakers with a comfortable fit', 'image_url_1.jpg', 'Casual Sneakers'),
+(2, 1200000, 1, 30, 'Running shoes with high durability', 'image_url_2.jpg', 'Durable Running Shoes'),
+(3, 1500000, 2, 40, 'Leather formal shoes with classic design', 'image_url_3.jpg', 'Leather Formal Shoes'),
+(4, 900000, 1, 20, 'Trendy sports shoes for outdoor activities', 'image_url_4.jpg', 'Outdoor Sports Shoes'),
+(5, 800000, 2, 15, 'Comfortable slip-on shoes for everyday use', 'image_url_5.jpg', 'Everyday Slip-on Shoes'),
+(6, 2000000, 3, 10, 'Premium hiking boots for extreme conditions', 'image_url_6.jpg', 'Premium Hiking Boots'),
+(7, 1300000, 1, 25, 'Lightweight running shoes for daily runs', 'image_url_7.jpg', 'Lightweight Running Shoes'),
+(8, 1400000, 2, 35, 'Stylish loafers for casual wear', 'image_url_8.jpg', 'Stylish Loafers'),
+(9, 1100000, 3, 18, 'Ankle boots with sturdy soles for winter', 'image_url_9.jpg', 'Winter Ankle Boots'),
+(10, 1600000, 1, 45, 'Breathable mesh sneakers for summer', 'image_url_10.jpg', 'Mesh Sneakers');

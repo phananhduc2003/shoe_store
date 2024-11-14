@@ -1,0 +1,21 @@
+package com.fullstack.mystore.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.entity.ProductCategoryBrand;
+import com.fullstack.mystore.entity.ProductCategoryBrandPurpose;
+import com.fullstack.mystore.entity.ProductCategoryPurpose;
+
+
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+	
+	List<Product> findByProductCategoryBrand(ProductCategoryBrand productCategoryBrand);
+	
+	List<ProductCategoryBrandPurpose> findByProductCategoryPurpose(ProductCategoryPurpose productCategoryPurpose);
+	
+	List<Product> findByProductCategoryBrandAndProductCategoryBrandPurposesProductCategoryPurpose(
+            ProductCategoryBrand productCategoryBrand, ProductCategoryPurpose productCategoryPurpose);
+}

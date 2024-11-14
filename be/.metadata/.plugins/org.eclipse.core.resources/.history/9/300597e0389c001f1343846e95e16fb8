@@ -1,0 +1,64 @@
+package com.fullstack.mystore.entity;
+
+
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+
+
+@Entity
+public class ProductCategoryPurpose {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    private String purposeName;
+
+ // Mối quan hệ ManyToMany với Product
+    @ManyToMany(mappedBy = "productCategoryPurposes") // mappedBy phải trỏ đến thuộc tính 'productCategoryPurposes' trong Product
+    private Set<Product> products;
+
+    // Mối quan hệ OneToMany với ProductCategoryBrandPurpose
+    @OneToMany(mappedBy = "productCategoryPurpose")
+    private Set<ProductCategoryBrandPurpose> productCategoryBrandPurposes;
+	 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getPurposeName() {
+		return purposeName;
+	}
+
+	public void setPurposeName(String purposeName) {
+		this.purposeName = purposeName;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	public Set<ProductCategoryBrandPurpose> getProductCategoryBrandPurposes() {
+		return productCategoryBrandPurposes;
+	}
+
+	public void setProductCategoryBrandPurposes(Set<ProductCategoryBrandPurpose> productCategoryBrandPurposes) {
+		this.productCategoryBrandPurposes = productCategoryBrandPurposes;
+	}
+
+	
+	
+}

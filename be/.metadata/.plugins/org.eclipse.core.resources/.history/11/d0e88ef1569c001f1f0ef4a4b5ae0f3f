@@ -1,0 +1,5 @@
+package com.fullstack.mystore.exception;
+
+public class ResourceNotFoundException {
+
+}

@@ -1,0 +1,3 @@
+spring.application.name=mystore
+logging.level.org.springframeworld=debug
+spring.datasource.url=jdbc:h2:mem:testdb

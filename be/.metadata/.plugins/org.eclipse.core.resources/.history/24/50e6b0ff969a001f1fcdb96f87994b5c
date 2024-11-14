@@ -1,0 +1,11 @@
+INSERT INTO PRODUCT (ID, PRICE, PRODUCT_CATEGORY_ID, QUANTITY, DESCRIPTION, IMAGE, NAME) VALUES
+(1, 1000000, 1, 50, 'Nike casual sneakers with a comfortable fit', 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/eaf524f7-a9f7-4f70-a438-1b0480eb2540/NIKE+COURT+VISION+LO.png', 'Nike Casual Sneakers'),
+(2, 1200000, 2, 30, 'Adidas running shoes with high durability', 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2d2249871d004e4e91c0af34014a7c8f_9366/Runfalcon_3.0_Shoes_White_HQ3789_01_standard.jpg', 'Adidas Running Shoes'),
+(3, 1500000, 3, 40, 'Puma leather formal shoes with classic design', 'https://i.pinimg.com/736x/95/39/33/9539334934ed31c8ee5c50be7ea89552.jpg', 'Puma Formal Shoes'),
+(4, 900000, 4, 20, 'Converse trendy sports shoes for outdoor activities', 'https://cdn.authentic-shoes.com/wp-content/uploads/2023/08/Screenshot_2023.08.09_10.06.36.112.png', 'Converse Sports Shoes'),
+(5, 800000, 5, 15, 'Vans slip-on shoes for everyday use', 'https://bizweb.dktcdn.net/100/140/774/products/giay-vans-slip-on-classic-eco-theory-checkerboard-vn0a5jmh705-3.jpg?v=1660726153080', 'Vans Slip-on Shoes'),
+(6, 2000000, 1, 10, 'Nike premium hiking boots for extreme conditions', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeTajMEIFkO3z-uy4FHfvBDHjRZKXwoZsXCg&s', 'Nike Hiking Boots'),
+(7, 1300000, 2, 25, 'Adidas lightweight running shoes for daily runs', 'https://assets.adidas.com/images/w_600,f_auto,q_auto/f97d22f5b3af403ab63a5ba083e9edef_9366/Ultraboost_Light_Shoes_White_GY9350.jpg', 'Adidas Lightweight Shoes'),
+(8, 1400000, 3, 35, 'Puma stylish loafers for casual wear', 'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/396840/01/sv04/fnd/PNA/fmt/png/PUMA-x-PALOMO-Nitefox-Leather-Loafer', 'Puma Loafers'),
+(9, 1100000, 4, 18, 'Converse ankle boots for winter', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgCZKq__JcxuyapQ4e7H8BDtT0zmejujwg1Q&s', 'Converse Winter Boots'),
+(10, 1600000, 5, 45, 'Vans breathable mesh sneakers for summer', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkTt4aq7byVxN-90YxNCv9KZeMJ7rYvdmUGw&s', 'Vans Mesh Sneakers');

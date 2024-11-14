@@ -1,0 +1,18 @@
+package com.fullstack.mystore.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.fullstack.mystore.entity.Product;
+
+
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+	
+	List<Product> findByProductCategoryId(Integer categoryId);
+	
+	List<Product> findByNameContainingIgnoreCase(String name);
+	
+	List<Product> findByPriceBetween(double minPrice, double maxPrice);
+    
+}
