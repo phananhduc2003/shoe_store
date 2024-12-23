@@ -8,9 +8,9 @@ import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <CssVarsProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </CssVarsProvider>
+    {/* <CssVarsProvider theme={theme}> */}
+    <CssBaseline />
+    <App />
+    {/* </CssVarsProvider> */}
   </StrictMode>
 );
