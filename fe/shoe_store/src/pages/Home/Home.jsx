@@ -13,6 +13,18 @@ function Home() {
         <Link to="/product">product</Link>
         <Link to="/productDetail">productDetail</Link>
         <Link to="/cart">cart</Link>
+        <Link to="/product">product</Link>
+        <Link to="/productDetail">productDetail</Link>
+        <Link to="/cart">cart</Link>
+        <Link to="/product">product</Link>
+        <Link to="/productDetail">productDetail</Link>
+        <Link to="/cart">cart</Link>
+        <Link to="/product">product</Link>
+        <Link to="/productDetail">productDetail</Link>
+        <Link to="/cart">cart</Link>
+        <Link to="/product">product</Link>
+        <Link to="/productDetail">productDetail</Link>
+        <Link to="/cart">cart</Link>
       </Box>
     </>
   );

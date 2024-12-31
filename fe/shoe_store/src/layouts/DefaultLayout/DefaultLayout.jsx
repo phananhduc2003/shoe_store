@@ -13,9 +13,8 @@ const wrapper = {
 
 const content = {
   width: "100%",
-  minHeight: "calc(100vh - 60px - 60px)",
+  height: "1600px",
   marginTop: "60px",
-  flex: 1,
 };
 
 function DefaultLayout({ children }) {

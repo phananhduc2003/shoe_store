@@ -13,6 +13,7 @@ const wrapper = {
   position: "fixed",
   top: 0,
   left: 0,
+  right: 0,
   width: "100%",
   height: "60px",
   backgroundColor: "background.default",
@@ -93,8 +94,10 @@ function Header() {
                 Explore
               </Box>
               <Menu
+                disablePortal
+                disableScrollLock
                 anchorEl={anchorElExplore}
-                open={anchorElExplore}
+                open={Boolean(anchorElExplore)}
                 onClose={handleExploreMouseLeave}
                 MenuListProps={{
                   onMouseLeave: handleExploreMouseLeave,
@@ -113,7 +116,6 @@ function Header() {
                       theme.palette.background.default,
                   },
                 }}
-                disablePortal
               >
                 <Grid container>
                   <Grid item xs={6}>
@@ -162,6 +164,8 @@ function Header() {
                 Brands
               </Box>
               <Menu
+                disablePortal
+                disableScrollLock
                 anchorEl={anchorElBrands}
                 open={Boolean(anchorElBrands)}
                 onClose={handleBrandsMouseLeave}
@@ -182,7 +186,6 @@ function Header() {
                       theme.palette.background.default, // Đặt nền từ theme
                   },
                 }}
-                disablePortal
               >
                 <Grid container>
                   <Grid item xs={6}>
@@ -247,7 +250,7 @@ function Header() {
                       fontWeight: 500,
                       cursor: "pointer",
                       "&:hover": {
-                        color: "text.secondary", // Đổi màu khi hover
+                        color: "text.secondary",
                       },
                     }}
                   >
