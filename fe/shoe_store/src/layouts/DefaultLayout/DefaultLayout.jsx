@@ -13,7 +13,7 @@ const wrapper = {
 
 const content = {
   width: "100%",
-  height: "1600px",
+  minHeight: "calc(100vh - 60px )",
   marginTop: "60px",
 };
 
@@ -22,7 +22,6 @@ function DefaultLayout({ children }) {
     <>
       <Box sx={wrapper}>
         <Header />
-
         <Box sx={content}>{children}</Box>
         <Footer />
       </Box>

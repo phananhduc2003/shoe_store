@@ -1,5 +1,6 @@
 import { Box, Grid, Menu, MenuItem, Typography } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+// import { useAuth } from "../../context/AuthContext";
 
 import { useState } from "react";
 import DarkMode from "../../theme/DarkMode";
@@ -22,6 +23,10 @@ const wrapper = {
 };
 
 function Header() {
+  // const authContext = useAuth();
+
+  // const isAuthenticated = authContext.isAuthenticated;
+
   const [anchorElExplore, setAnchorElExplore] = useState(null);
 
   const [anchorElBrands, setAnchorElBrands] = useState(null);
@@ -119,27 +124,57 @@ function Header() {
               >
                 <Grid container>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
                       Running
                     </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
                       Football
                     </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
                       Casual
                     </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
                       Outdoor
                     </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
                       Winter
                     </MenuItem>
                   </Grid>
@@ -189,23 +224,59 @@ function Header() {
               >
                 <Grid container>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>Nike</MenuItem>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
+                      Nike
+                    </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
                       Adidas
                     </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>Puma</MenuItem>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
+                      Puma
+                    </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
                       Converse
                     </MenuItem>
                   </Grid>
                   <Grid item xs={6}>
-                    <MenuItem sx={{ justifyContent: "center" }}>Vans</MenuItem>
+                    <MenuItem
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        justifyContent: "center",
+                      }}
+                    >
+                      Vans
+                    </MenuItem>
                   </Grid>
                 </Grid>
               </Menu>
