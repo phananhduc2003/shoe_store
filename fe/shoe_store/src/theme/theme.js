@@ -21,7 +21,7 @@ const theme = extendTheme({
         },
         background: {
           default: "#f5f5f5", // Nền sáng nhẹ
-          paper: "#B6BEC9", // Nền giấy trắng
+          paper: "#f5f5f5", // Nền giấy trắng
         },
         secondary: {
           light: "#ffcc80", // Cam sáng
