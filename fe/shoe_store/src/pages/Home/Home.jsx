@@ -10,16 +10,41 @@ import hero3Image from "../../assets/images/3heroImage.jpg";
 import hero4Image from "../../assets/images/4heroImage.jpg";
 import hero5Image from "../../assets/images/5heroImage.jpg";
 
+import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
-import ListNike from "../../components/ListNike";
+import ShowItemShoe from "../../components/ShowItemShoe";
+import { ApiListNike } from "../../apiService/ApiListNike";
+import { ApiListPurposeRunning } from "../../apiService/ApiListPurposeRunning";
 
+const wrapper = {
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+};
 function Home() {
   const images = [hero1Image, hero2Image, hero3Image, hero4Image, hero5Image];
 
-  const wrapper = {
-    display: "flex",
-    flexDirection: "column",
-    with: "100%",
+  const [listNike, setListNike] = useState([]);
+  const [purposeRunning, setPurposeRunning] = useState([]);
+
+  useEffect(() => showListNike(), []);
+
+  const showListNike = () => {
+    ApiListNike()
+      .then((response) => {
+        setListNike(response.data);
+      })
+      .catch((error) => console.log("fair call api", error));
+  };
+
+  useEffect(() => showPurposeRunning(), []);
+
+  const showPurposeRunning = () => {
+    ApiListPurposeRunning()
+      .then((response) => {
+        setPurposeRunning(response.data);
+      })
+      .catch((error) => console.log("fair call api", error));
   };
 
   return (
@@ -118,7 +143,7 @@ function Home() {
           </Typography>
         </Box>
         <Box my={18} mx={3}>
-          <ListNike />
+          <ShowItemShoe dataApi={listNike} />
         </Box>
         {/*PaNo title */}
         <Box
@@ -140,7 +165,7 @@ function Home() {
           </Typography>
         </Box>
         <Box my={18} mx={3}>
-          <ListNike />
+          <ShowItemShoe dataApi={purposeRunning} />
         </Box>
         <Box sx={{ width: "100%", my: 2 }}>
           <Divider sx={{ borderColor: "#e0e0e0", borderWidth: 1 }} />

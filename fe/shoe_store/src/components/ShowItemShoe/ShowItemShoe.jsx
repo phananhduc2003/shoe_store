@@ -4,38 +4,11 @@ import "swiper/css";
 import "swiper/css/navigation"; // Import CSS for Navigation
 import { Navigation } from "swiper/modules"; // Import Navigation from modules";
 import { useRef } from "react";
+import PropTypes from "prop-types";
 
-function ListNike() {
+function ShowItemShoe({ dataApi }) {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-
-  const shoes = [
-    {
-      name: "PEGASUS 41",
-      image:
-        "https://bizweb.dktcdn.net/thumb/1024x1024/100/378/584/products/z5703624664632-99fc91984cfac3ff7e30a007739ac5e0.jpg?v=1722915213383",
-    },
-    {
-      name: "VOMERO",
-      image:
-        "https://bizweb.dktcdn.net/thumb/1024x1024/100/378/584/products/z5703624664632-99fc91984cfac3ff7e30a007739ac5e0.jpg?v=1722915213383",
-    },
-    {
-      name: "V2K",
-      image:
-        "https://bizweb.dktcdn.net/thumb/1024x1024/100/378/584/products/z5703624664632-99fc91984cfac3ff7e30a007739ac5e0.jpg?v=1722915213383",
-    },
-    {
-      name: "VAPORFLY",
-      image:
-        "https://bizweb.dktcdn.net/thumb/1024x1024/100/378/584/products/z5703624664632-99fc91984cfac3ff7e30a007739ac5e0.jpg?v=1722915213383",
-    },
-    {
-      name: "DUNKS",
-      image:
-        "https://bizweb.dktcdn.net/thumb/1024x1024/100/378/584/products/z5703624664632-99fc91984cfac3ff7e30a007739ac5e0.jpg?v=1722915213383",
-    },
-  ];
 
   return (
     <Box sx={{ maxWidth: "100%" }}>
@@ -62,7 +35,7 @@ function ListNike() {
           "--swiper-navigation-color": "black",
         }}
       >
-        {shoes.map((shoe, index) => (
+        {dataApi.map((data, index) => (
           <SwiperSlide key={index}>
             <Card
               sx={{
@@ -75,7 +48,7 @@ function ListNike() {
             >
               <CardMedia
                 component="div"
-                image={shoe.image}
+                image={data.image}
                 sx={{
                   aspectRatio: "16/9", //key about css img
                   backgroundSize: "cover",
@@ -99,7 +72,7 @@ function ListNike() {
                     color: "#0F1214",
                   }}
                 >
-                  {shoe.name}
+                  {data.name}
                 </Typography>
               </CardContent>
             </Card>
@@ -146,4 +119,12 @@ function ListNike() {
   );
 }
 
-export default ListNike;
+ShowItemShoe.propTypes = {
+  dataApi: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+export default ShowItemShoe;
