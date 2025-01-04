@@ -5,7 +5,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState } from "react";
 import DarkMode from "../../theme/DarkMode";
 import logo from "../../assets/images/logo.svg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const wrapper = {
   display: "flex",
@@ -23,13 +23,17 @@ const wrapper = {
 };
 
 function Header() {
+  const purposes = ["Running", "Football", "Casual", "Outdoor", "Winter"];
+
+  const brands = ["Nike", "Adidas", "Puma", "Converse", "Vans"];
   // const authContext = useAuth();
 
   // const isAuthenticated = authContext.isAuthenticated;
 
   const [anchorElExplore, setAnchorElExplore] = useState(null);
-
   const [anchorElBrands, setAnchorElBrands] = useState(null);
+
+  const navigate = useNavigate(); // Hook navigate để điều hướng
 
   const handleExploreMouseEnter = (event) => {
     setAnchorElExplore(event.currentTarget);
@@ -46,6 +50,11 @@ function Header() {
   const handleBrandsMouseLeave = () => {
     setAnchorElBrands(null);
   };
+
+  const handleNavigation = (path) => {
+    navigate(path); // Điều hướng tới đường dẫn được truyền vào
+  };
+
   return (
     <>
       <Box sx={wrapper}>
@@ -77,6 +86,7 @@ function Header() {
                     color: "text.secondary",
                   },
                 }}
+                onClick={() => handleNavigation("/")} // Điều hướng đến Home
               >
                 Home
               </Box>
@@ -90,7 +100,7 @@ function Header() {
               <Box
                 sx={{
                   mx: 3,
-                  color: anchorElExplore ? "text.secondary" : "inherit", // Giữ màu đỏ nếu menu con mở
+                  color: anchorElExplore ? "text.secondary" : "inherit",
                   "&:hover": {
                     color: "text.secondary",
                   },
@@ -123,61 +133,20 @@ function Header() {
                 }}
               >
                 <Grid container>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Running
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Football
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Casual
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Outdoor
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Winter
-                    </MenuItem>
-                  </Grid>
+                  {purposes.map((category) => (
+                    <Grid item xs={6} key={category}>
+                      <MenuItem
+                        onClick={() => handleNavigation(`/product/${category}`)}
+                        sx={{
+                          fontSize: "14px",
+                          fontWeight: 500,
+                          justifyContent: "center",
+                        }}
+                      >
+                        {category}
+                      </MenuItem>
+                    </Grid>
+                  ))}
                 </Grid>
               </Menu>
             </Grid>
@@ -223,61 +192,20 @@ function Header() {
                 }}
               >
                 <Grid container>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Nike
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Adidas
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Puma
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Converse
-                    </MenuItem>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <MenuItem
-                      sx={{
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        justifyContent: "center",
-                      }}
-                    >
-                      Vans
-                    </MenuItem>
-                  </Grid>
+                  {brands.map((brand) => (
+                    <Grid item xs={6} key={brand}>
+                      <MenuItem
+                        onClick={() => handleNavigation(`/product/${brand}`)} // Điều hướng đến từng brand
+                        sx={{
+                          fontSize: "14px",
+                          fontWeight: 500,
+                          justifyContent: "center",
+                        }}
+                      >
+                        {brand}
+                      </MenuItem>
+                    </Grid>
+                  ))}
                 </Grid>
               </Menu>
             </Grid>
@@ -324,16 +252,9 @@ function Header() {
                         color: "text.secondary",
                       },
                     }}
+                    onClick={() => handleNavigation("/login")} // Điều hướng tới Login
                   >
-                    <Link
-                      to="/login"
-                      style={{
-                        textDecoration: "none", // Bỏ gạch chân
-                        color: "inherit", // Kế thừa màu chữ từ Typography
-                      }}
-                    >
-                      Sign Up
-                    </Link>
+                    Sign Up
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -349,6 +270,7 @@ function Header() {
                         color: "text.secondary",
                       },
                     }}
+                    onClick={() => handleNavigation("/login")} // Điều hướng tới Login
                   >
                     Sign In
                   </Typography>
