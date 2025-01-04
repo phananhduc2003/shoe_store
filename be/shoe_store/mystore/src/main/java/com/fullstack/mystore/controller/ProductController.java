@@ -1,7 +1,10 @@
 package com.fullstack.mystore.controller;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +16,7 @@ import com.fullstack.mystore.repository.ProductRepository;
 
 @RestController
 public class ProductController {
-	
+	@Autowired
 	private ProductRepository productRepository;
 	
 
@@ -25,18 +28,18 @@ public class ProductController {
 		
 	}
 
-
+	// GET /products
 	@GetMapping("home/product")
 	public List<Product> allProduct() {
 		return productRepository.findAll();
 	}
-	
+	// GET /products/{id}
 	@GetMapping("home/product/{id}")
 	public List<Product> getProductById(@PathVariable int id) {
 		return productRepository.findProductById(id);
 	}
 	
-	//http://localhost:8080/home/product/by-brand?brandId=1
+	//http://localhost:8080/home/product/brand?brandId=1
 	@GetMapping("home/product/brand")
 	public List<Product> getProductByBrand(@RequestParam int brandId) {
 		return productRepository.findByProductCategoryBrand_Id(brandId);
@@ -46,11 +49,24 @@ public class ProductController {
 	public List<Product> getProductByPurpose(@RequestParam int purposeId) {
 		return productRepository.findByProductCategoryBrandPurposes_ProductCategoryPurpose_Id(purposeId);
 	}
-	//http://localhost:8080/home/product/brad-and-purpose?purposeId=1&brandId=2
-	@GetMapping("home/product/brad-and-purpose")
-	public List<Product> getProductByBrandandPurpose(@RequestParam int brandId, @RequestParam int purposeId) {
-		return productRepository.findByProductCategoryBrand_IdAndProductCategoryBrandPurposes_ProductCategoryPurpose_Id(brandId,purposeId);
+
+	@GetMapping("home/product/filter")
+	public List<Product> filterProducts(@RequestParam(required = false) String brandIds,
+	        @RequestParam(required = false) String purposeIds) {
+		 List<Integer> brandIdList = (brandIds != null && !brandIds.isEmpty())
+		            ? Arrays.stream(brandIds.split(","))
+		                    .map(Integer::parseInt)
+		                    .collect(Collectors.toList())
+		            : null;
+
+		    List<Integer> purposeIdList = (purposeIds != null && !purposeIds.isEmpty())
+		            ? Arrays.stream(purposeIds.split(","))
+		                    .map(Integer::parseInt)
+		                    .collect(Collectors.toList())
+		            : null;
+		    return productRepository.findByFilters(brandIdList, purposeIdList);
 	}
+	
 	
 		
 	

@@ -31,9 +31,11 @@ public class Product {
     private ProductCategoryBrand productCategoryBrand;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<ProductCategoryBrandPurpose> productCategoryBrandPurposes; 
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<ShoppingCartItem> shoppingCartItems;
 
 	public Integer getId() {
