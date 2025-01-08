@@ -1,7 +1,5 @@
 import { Box, Grid, Menu, MenuItem, Typography } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-// import { useAuth } from "../../context/AuthContext";
-
 import { useState } from "react";
 import DarkMode from "../../theme/DarkMode";
 import logo from "../../assets/images/logo.svg";
@@ -24,35 +22,49 @@ const wrapper = {
 
 function Header() {
   const purposes = ["Running", "Football", "Casual", "Outdoor", "Winter"];
-
   const brands = ["Nike", "Adidas", "Puma", "Converse", "Vans"];
-  // const authContext = useAuth();
 
-  // const isAuthenticated = authContext.isAuthenticated;
+  const purposeMapping = {
+    Running: 1,
+    Football: 2,
+    Casual: 3,
+    Outdoor: 4,
+    Winter: 5,
+  };
+
+  const brandMapping = {
+    Nike: 1,
+    Adidas: 2,
+    Puma: 3,
+    Converse: 4,
+    Vans: 5,
+  };
 
   const [anchorElExplore, setAnchorElExplore] = useState(null);
   const [anchorElBrands, setAnchorElBrands] = useState(null);
 
-  const navigate = useNavigate(); // Hook navigate để điều hướng
+  const navigate = useNavigate();
 
-  const handleExploreMouseEnter = (event) => {
+  const handleExploreOpen = (event) => {
     setAnchorElExplore(event.currentTarget);
   };
 
-  const handleExploreMouseLeave = () => {
+  const handleExploreClose = () => {
     setAnchorElExplore(null);
   };
 
-  const handleBrandsMouseEnter = (event) => {
+  const handleBrandsOpen = (event) => {
     setAnchorElBrands(event.currentTarget);
   };
 
-  const handleBrandsMouseLeave = () => {
+  const handleBrandsClose = () => {
     setAnchorElBrands(null);
   };
 
-  const handleNavigation = (path) => {
-    navigate(path); // Điều hướng tới đường dẫn được truyền vào
+  const handleNavigation = (path, filters = {}) => {
+    navigate(path, { state: filters });
+    handleExploreClose();
+    handleBrandsClose();
   };
 
   return (
@@ -82,40 +94,38 @@ function Header() {
               <Box
                 sx={{
                   mx: 3,
+                  color: "primary.main",
+                  fontWeight: 700,
                   "&:hover": {
-                    color: "text.secondary",
+                    color: "primary.light",
                   },
                 }}
-                onClick={() => handleNavigation("/")} // Điều hướng đến Home
+                onClick={() => handleNavigation("/")}
               >
                 Home
               </Box>
             </Grid>
-            <Grid
-              item
-              onMouseEnter={handleExploreMouseEnter}
-              onMouseLeave={handleExploreMouseLeave}
-              sx={{ cursor: "pointer" }}
-            >
+            <Grid item sx={{ cursor: "pointer" }}>
               <Box
                 sx={{
                   mx: 3,
-                  color: anchorElExplore ? "text.secondary" : "inherit",
+                  fontWeight: 700,
+                  color: anchorElExplore ? "primary.main" : "primary.main",
                   "&:hover": {
-                    color: "text.secondary",
+                    color: "primary.light",
                   },
                 }}
+                onMouseEnter={handleExploreOpen}
               >
                 Explore
               </Box>
               <Menu
-                disablePortal
                 disableScrollLock
                 anchorEl={anchorElExplore}
                 open={Boolean(anchorElExplore)}
-                onClose={handleExploreMouseLeave}
+                onClose={handleExploreClose}
                 MenuListProps={{
-                  onMouseLeave: handleExploreMouseLeave,
+                  onMouseLeave: handleExploreClose,
                 }}
                 anchorOrigin={{
                   vertical: "bottom",
@@ -133,48 +143,48 @@ function Header() {
                 }}
               >
                 <Grid container>
-                  {purposes.map((category) => (
-                    <Grid item xs={6} key={category}>
+                  {purposes.map((purpose) => (
+                    <Grid item xs={6} key={purpose}>
                       <MenuItem
-                        onClick={() => handleNavigation(`/product/${category}`)}
+                        onClick={() =>
+                          handleNavigation(`/product/`, {
+                            purpose: purposeMapping[purpose],
+                          })
+                        }
                         sx={{
                           fontSize: "14px",
                           fontWeight: 500,
                           justifyContent: "center",
                         }}
                       >
-                        {category}
+                        {purpose}
                       </MenuItem>
                     </Grid>
                   ))}
                 </Grid>
               </Menu>
             </Grid>
-            <Grid
-              item
-              onMouseEnter={handleBrandsMouseEnter}
-              onMouseLeave={handleBrandsMouseLeave}
-              sx={{ cursor: "pointer" }}
-            >
+            <Grid item sx={{ cursor: "pointer" }}>
               <Box
                 sx={{
                   mx: 3,
-                  color: anchorElBrands ? "text.secondary" : "inherit", // Giữ màu đỏ nếu menu con mở
+                  fontWeight: 700,
+                  color: anchorElBrands ? "primary.main" : "primary.main",
                   "&:hover": {
-                    color: "text.secondary",
+                    color: "primary.light",
                   },
                 }}
+                onMouseEnter={handleBrandsOpen}
               >
                 Brands
               </Box>
               <Menu
-                disablePortal
                 disableScrollLock
                 anchorEl={anchorElBrands}
                 open={Boolean(anchorElBrands)}
-                onClose={handleBrandsMouseLeave}
+                onClose={handleBrandsClose}
                 MenuListProps={{
-                  onMouseLeave: handleBrandsMouseLeave,
+                  onMouseLeave: handleBrandsClose,
                 }}
                 anchorOrigin={{
                   vertical: "bottom",
@@ -187,7 +197,7 @@ function Header() {
                 PaperProps={{
                   sx: {
                     backgroundColor: (theme) =>
-                      theme.palette.background.default, // Đặt nền từ theme
+                      theme.palette.background.default,
                   },
                 }}
               >
@@ -195,7 +205,11 @@ function Header() {
                   {brands.map((brand) => (
                     <Grid item xs={6} key={brand}>
                       <MenuItem
-                        onClick={() => handleNavigation(`/product/${brand}`)} // Điều hướng đến từng brand
+                        onClick={() =>
+                          handleNavigation(`/product/`, {
+                            brand: brandMapping[brand],
+                          })
+                        }
                         sx={{
                           fontSize: "14px",
                           fontWeight: 500,
@@ -210,15 +224,13 @@ function Header() {
               </Menu>
             </Grid>
             <Grid item>
-              <Box sx={{ mx: 3 }}>News</Box>
+              <Box sx={{ mx: 3, color: "primary.main", fontWeight: 700 }}>
+                News
+              </Box>
             </Grid>
           </Grid>
         </Box>
-        <Box
-          sx={{
-            marginRight: 3,
-          }}
-        >
+        <Box sx={{ marginRight: 3 }}>
           <Grid container spacing={2} alignItems={"center"}>
             <Grid item>
               <DarkMode />
@@ -252,7 +264,7 @@ function Header() {
                         color: "text.secondary",
                       },
                     }}
-                    onClick={() => handleNavigation("/login")} // Điều hướng tới Login
+                    onClick={() => handleNavigation("/login")}
                   >
                     Sign Up
                   </Typography>
@@ -270,7 +282,7 @@ function Header() {
                         color: "text.secondary",
                       },
                     }}
-                    onClick={() => handleNavigation("/login")} // Điều hướng tới Login
+                    onClick={() => handleNavigation("/login")}
                   >
                     Sign In
                   </Typography>

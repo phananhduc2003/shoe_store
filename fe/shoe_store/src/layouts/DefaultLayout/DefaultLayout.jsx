@@ -9,10 +9,12 @@ const wrapper = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  minHeight: "100vh",
 };
 
 const content = {
   width: "100%",
+
   minHeight: "calc(100vh - 60px )",
   marginTop: "60px",
 };

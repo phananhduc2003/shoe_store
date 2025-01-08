@@ -19,9 +19,10 @@ const theme = extendTheme({
           primary: "#0F1214", // Chữ chính màu đen
           secondary: "#6C7C93", // Chữ phụ màu đen xám
         },
+
         background: {
           default: "#f5f5f5", // Nền sáng nhẹ
-          paper: "#f5f5f5", // Nền giấy trắng
+          paper: "#e0e0e0",
         },
         secondary: {
           light: "#ffcc80", // Cam sáng
@@ -46,7 +47,7 @@ const theme = extendTheme({
         },
         background: {
           default: "#121212", // Nền tối
-          paper: "#0f1214", // Nền giấy tối
+          paper: "#373A40", // Nền giấy tối
         },
         secondary: {
           light: "#ffcc80",
