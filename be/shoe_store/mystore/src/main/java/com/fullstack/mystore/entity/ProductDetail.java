@@ -1,5 +1,0 @@
-package com.fullstack.mystore.entity;
-
-public class ProductDetail {
-
-}

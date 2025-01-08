@@ -50,7 +50,7 @@ public class ProductController {
 		return productRepository.findByProductCategoryBrandPurposes_ProductCategoryPurpose_Id(purposeId);
 	}
 
-	@GetMapping("home/product/filter")
+	@GetMapping("product/filter")
 	public List<Product> filterProducts(@RequestParam(required = false) String brandIds,
 	        @RequestParam(required = false) String purposeIds) {
 		 List<Integer> brandIdList = (brandIds != null && !brandIds.isEmpty())
