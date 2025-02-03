@@ -147,7 +147,7 @@ function Header() {
                     <Grid item xs={6} key={purpose}>
                       <MenuItem
                         onClick={() =>
-                          handleNavigation(`/product/`, {
+                          handleNavigation(`/product/filter`, {
                             purpose: purposeMapping[purpose],
                           })
                         }
@@ -206,7 +206,7 @@ function Header() {
                     <Grid item xs={6} key={brand}>
                       <MenuItem
                         onClick={() =>
-                          handleNavigation(`/product/`, {
+                          handleNavigation(`/product/filter`, {
                             brand: brandMapping[brand],
                           })
                         }

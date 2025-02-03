@@ -2,6 +2,8 @@ package com.fullstack.mystore.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,7 +26,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	           "JOIN p.productCategoryBrandPurposes pbp " +
 	           "WHERE (:brandIds IS NULL OR p.productCategoryBrand.id IN :brandIds) " +
 	           "AND (:purposeIds IS NULL OR pbp.productCategoryPurpose.id IN :purposeIds)")
-	    List<Product> findByFilters(
+	    Page<Product> findByFilters(
 	            @Param("brandIds") List<Integer> brandIds,
-	            @Param("purposeIds") List<Integer> purposeIds);
+	            @Param("purposeIds") List<Integer> purposeIds,
+	            Pageable pageable);
+	    		
 }
