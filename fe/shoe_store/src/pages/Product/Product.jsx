@@ -10,19 +10,28 @@ import {
   FormGroup,
   FormLabel,
   Grid,
+  Pagination,
   TextField,
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { ProductApi } from "../../apiService/ProductApi";
 
 function Product() {
   const location = useLocation();
+
   const [selectedPurpose, setSelectedPurpose] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState([]);
-  const [products, setProducts] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
+  const [totalPages, setTotalPages] = useState(0); // Tổng số trang
+
+  const [allProducts, setAllProducts] = useState([]); // Danh sách gốc từ API
+  const [filteredProducts, setFilteredProducts] = useState([]); // Danh sách đã lọc từ tìm kiếm
+  const [searchKeyword, setSearchKeyword] = useState(""); // Từ khóa tìm kiếm
 
   const purposeMapping = {
     Running: 1,
@@ -49,23 +58,23 @@ function Product() {
     }
   }, [location.state]);
 
-  // Gọi lại API khi `selectedBrand` hoặc `selectedPurpose` thay đổi
-  useEffect(() => {
-    ShowProduct();
-  }, [selectedBrand, selectedPurpose]);
+  const ShowProduct = useCallback(() => {
+    const brandIds = selectedBrand.join(",");
+    const purposeIds = selectedPurpose.join(",");
 
-  const ShowProduct = () => {
-    const brandIds = selectedBrand.join(","); // Lấy danh sách ID của brand
-    const purposeIds = selectedPurpose.join(","); // Lấy danh sách ID của purpose
-    console.log("Calling API with:", { brandIds, purposeIds });
-
-    ProductApi({ brandIds, purposeIds }) // Gọi API với các tham số
+    ProductApi({ brandIds, purposeIds, page: currentPage - 1, size: 6 })
       .then((response) => {
-        console.log("API Response:", response.data);
-        setProducts(response.data);
+        const fetchedProducts = response.data.content || [];
+        setAllProducts(fetchedProducts);
+        setFilteredProducts(fetchedProducts);
+        setTotalPages(response.data.totalPages || 0);
       })
       .catch((error) => console.log("Failed to call API", error));
-  };
+  }, [selectedBrand, selectedPurpose, currentPage]);
+
+  useEffect(() => {
+    ShowProduct();
+  }, [ShowProduct]);
 
   const handleCheckboxChange = (e, type) => {
     const { checked, value } = e.target;
@@ -81,7 +90,36 @@ function Product() {
         checked ? [...prev, id] : prev.filter((item) => item !== id)
       );
     }
+    // Reset trang hiện tại về 1
+    setCurrentPage(1);
   };
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value); // Cập nhật trang hiện tại
+  };
+
+  // Debounce cho tìm kiếm
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (searchKeyword === "") {
+        setFilteredProducts(allProducts); // Nếu từ khóa rỗng, hiển thị tất cả
+      } else {
+        const filtered = allProducts.filter((product) =>
+          product.name.toLowerCase().includes(searchKeyword)
+        );
+        setFilteredProducts(filtered);
+      }
+    }, 300); // Đợi 300ms sau khi ngừng gõ
+
+    return () => clearTimeout(delayDebounce); // Xóa timeout cũ
+  }, [searchKeyword, allProducts]);
+  //search
+  const handleSearch = (e) => {
+    let keyword = e.target.value.toLowerCase().trim(); // Loại bỏ khoảng trắng đầu/cuối
+    keyword = keyword.replace(/\s+/g, " "); // Chuyển nhiều khoảng trắng liên tiếp thành 1 khoảng trắng
+    setSearchKeyword(keyword);
+  };
+
   return (
     <>
       <Box sx={{ display: "flex", width: "100%" }}>
@@ -302,6 +340,7 @@ function Product() {
               <TextField
                 variant="outlined"
                 placeholder="Search"
+                onChange={handleSearch}
                 sx={{
                   width: "100%",
                   height: "100%",
@@ -328,44 +367,65 @@ function Product() {
                   "&:hover": {
                     backgroundColor: "#334296",
                   },
+                  onChange: {},
                 }}
               >
                 <SearchIcon />
               </Button>
             </Box>
           </Box>
-          <Box sx={{ py: 4 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", py: 4 }}>
             <Grid container spacing={4}>
-              {products.map((product) => (
-                <Grid item xs={12} sm={6} md={4} key={product.id}>
-                  <Card
-                    sx={{ boxShadow: 2, borderRadius: 2, bgcolor: "#ffffff" }}
-                  >
-                    <CardMedia
-                      component="img"
-                      height="300"
-                      image={product.image}
-                      alt={product.name}
-                      sx={{ objectFit: "contain", padding: 1 }}
-                    />
-                    <CardContent>
-                      <Typography variant="body1" fontWeight="bold">
-                        {product.name}
-                      </Typography>
-
-                      <Typography
-                        variant="h6"
-                        color="primary.dark"
-                        fontWeight="bold"
-                        sx={{ marginTop: 1 }}
-                      >
-                        {product.price}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((filteredProduct) => (
+                  <Grid item xs={12} sm={6} md={4} key={filteredProduct.id}>
+                    <Card
+                      sx={{ boxShadow: 2, borderRadius: 2, bgcolor: "#ffffff" }}
+                    >
+                      <CardMedia
+                        component="img"
+                        height="300"
+                        image={filteredProduct.image}
+                        alt={filteredProduct.name}
+                        sx={{ objectFit: "contain", padding: 1 }}
+                      />
+                      <CardContent>
+                        <Typography variant="body1" fontWeight="bold">
+                          {filteredProduct.name}
+                        </Typography>
+                        <Typography
+                          variant="h6"
+                          color="primary.dark"
+                          fontWeight="bold"
+                          sx={{ marginTop: 1 }}
+                        >
+                          {filteredProduct.price}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))
+              ) : (
+                <Typography
+                  variant="h6"
+                  sx={{
+                    textAlign: "center",
+                    width: "100%",
+                    marginTop: 3,
+                    color: "text.secondary",
+                  }}
+                >
+                  Không tìm thấy sản phẩm nào.
+                </Typography>
+              )}
             </Grid>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+              <Pagination
+                count={totalPages} // Tổng số trang từ API
+                page={currentPage} // Trang hiện tại
+                onChange={handlePageChange} // Hàm xử lý thay đổi trang
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
