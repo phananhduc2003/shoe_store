@@ -15,13 +15,15 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { ProductApi } from "../../apiService/ProductApi";
 
 function Product() {
   const location = useLocation();
+
+  const navigate = useNavigate();
 
   const [selectedPurpose, setSelectedPurpose] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState([]);
@@ -118,6 +120,10 @@ function Product() {
     let keyword = e.target.value.toLowerCase().trim(); // Loại bỏ khoảng trắng đầu/cuối
     keyword = keyword.replace(/\s+/g, " "); // Chuyển nhiều khoảng trắng liên tiếp thành 1 khoảng trắng
     setSearchKeyword(keyword);
+  };
+
+  const handleNavigatorProductDetail = () => {
+    navigate(`/productDetail`);
   };
 
   return (
@@ -381,6 +387,7 @@ function Product() {
                   <Grid item xs={12} sm={6} md={4} key={filteredProduct.id}>
                     <Card
                       sx={{ boxShadow: 2, borderRadius: 2, bgcolor: "#ffffff" }}
+                      onClick={handleNavigatorProductDetail}
                     >
                       <CardMedia
                         component="img"

@@ -4,11 +4,19 @@ import "swiper/css";
 import "swiper/css/navigation"; // Import CSS for Navigation
 import { Navigation } from "swiper/modules"; // Import Navigation from modules";
 import { useRef } from "react";
+
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function ShowItemShoe({ dataApi }) {
+  const navigate = useNavigate();
+
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+
+  const handleNavigatorProductDetail = () => {
+    navigate(`/productDetail`);
+  };
 
   return (
     <Box sx={{ maxWidth: "100%" }}>
@@ -38,6 +46,7 @@ function ShowItemShoe({ dataApi }) {
         {dataApi.map((data, index) => (
           <SwiperSlide key={index}>
             <Card
+              onClick={handleNavigatorProductDetail}
               sx={{
                 maxWidth: "100%",
                 borderRadius: 2,
