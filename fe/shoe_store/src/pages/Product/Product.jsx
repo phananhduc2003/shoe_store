@@ -19,6 +19,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { ProductApi } from "../../apiService/ProductApi";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 function Product() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function Product() {
 
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const [totalPages, setTotalPages] = useState(0); // Tổng số trang
+  const [totalProducts, setTotalProducts] = useState(0);
 
   const [allProducts, setAllProducts] = useState([]); // Danh sách gốc từ API
   const [filteredProducts, setFilteredProducts] = useState([]); // Danh sách đã lọc từ tìm kiếm
@@ -70,6 +72,7 @@ function Product() {
         setAllProducts(fetchedProducts);
         setFilteredProducts(fetchedProducts);
         setTotalPages(response.data.totalPages || 0);
+        setTotalProducts(response.data.totalElements || 0); // Lấy tổng số sản phẩm
       })
       .catch((error) => console.log("Failed to call API", error));
   }, [selectedBrand, selectedPurpose, currentPage]);
@@ -122,8 +125,8 @@ function Product() {
     setSearchKeyword(keyword);
   };
 
-  const handleNavigatorProductDetail = () => {
-    navigate(`/productDetail`);
+  const handleNavigatorProductDetail = (id) => {
+    navigate(`/productDetail/${id}`);
   };
 
   return (
@@ -327,8 +330,10 @@ function Product() {
               height: "60px",
             }}
           >
-            <Typography sx={{ textAlign: "center", lineHeight: "60px" }}>
-              Tổng số sản phẩm
+            <Typography
+              sx={{ textAlign: "center", lineHeight: "60px", marginLeft: 1 }}
+            >
+              Tổng số sản phẩm {totalProducts}
             </Typography>
             <Box
               sx={{
@@ -387,26 +392,36 @@ function Product() {
                   <Grid item xs={12} sm={6} md={4} key={filteredProduct.id}>
                     <Card
                       sx={{ boxShadow: 2, borderRadius: 2, bgcolor: "#ffffff" }}
-                      onClick={handleNavigatorProductDetail}
+                      onClick={() =>
+                        handleNavigatorProductDetail(filteredProduct.id)
+                      }
                     >
                       <CardMedia
                         component="img"
                         height="300"
                         image={filteredProduct.image}
                         alt={filteredProduct.name}
-                        sx={{ objectFit: "contain", padding: 1 }}
+                        sx={{
+                          objectFit: "contain",
+                          padding: 1,
+                          cursor: "pointer",
+                        }}
                       />
                       <CardContent>
-                        <Typography variant="body1" fontWeight="bold">
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          sx={{ cursor: "pointer" }}
+                        >
                           {filteredProduct.name}
                         </Typography>
                         <Typography
                           variant="h6"
                           color="primary.dark"
                           fontWeight="bold"
-                          sx={{ marginTop: 1 }}
+                          sx={{ marginTop: 1, cursor: "pointer" }}
                         >
-                          {filteredProduct.price}
+                          {filteredProduct.price} $
                         </Typography>
                       </CardContent>
                     </Card>
