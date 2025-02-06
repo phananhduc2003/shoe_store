@@ -14,8 +14,8 @@ function ShowItemShoe({ dataApi }) {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
-  const handleNavigatorProductDetail = () => {
-    navigate(`/productDetail`);
+  const handleNavigatorProductDetail = (id) => {
+    navigate(`/productDetail/${id}`);
   };
 
   return (
@@ -46,7 +46,7 @@ function ShowItemShoe({ dataApi }) {
         {dataApi.map((data, index) => (
           <SwiperSlide key={index}>
             <Card
-              onClick={handleNavigatorProductDetail}
+              onClick={() => handleNavigatorProductDetail(data.id)}
               sx={{
                 maxWidth: "100%",
                 borderRadius: 2,

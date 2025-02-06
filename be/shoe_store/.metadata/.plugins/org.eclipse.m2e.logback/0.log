@@ -321,3 +321,4 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.webjars:s
 2025-02-04 09:29:53,150 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-02-04 09:29:53,155 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\JAVA\word_space\shoe_store\be\shoe_store\mystore\src\test\resources
 2025-02-05 10:10:45,846 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-02-06 08:46:03,052 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
