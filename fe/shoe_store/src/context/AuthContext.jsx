@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { ApiListUsers } from "../apiService/ApiListUsers";
 
 export const AuthContext = createContext();
 
@@ -7,14 +8,34 @@ export const useAuth = () => useContext(AuthContext);
 
 function AuthProvider({ children }) {
   const [isAuthenticated, setAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState(null); // Lưu role của user
+  const [listUsers, setListUsers] = useState([]);
+
+  useEffect(() => FindAllUsers(), []);
+
+  const FindAllUsers = () => {
+    ApiListUsers()
+      .then((response) => {
+        setListUsers(response.data);
+      })
+      .catch((error) => {
+        console.log("fair call api " + error);
+      });
+  };
 
   const Login = (username, password) => {
-    if (username === "duc" && password === "123") {
+    const user = listUsers.find(
+      (user) => user.username === username && user.password === password
+    );
+
+    if (user) {
       setAuthenticated(true);
-      return true;
+      setUserRole(user.role);
+      return user.role;
     } else {
       setAuthenticated(false);
-      return false;
+      setUserRole(null);
+      return null;
     }
   };
 
@@ -23,7 +44,7 @@ function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, Login, Logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, Login, Logout, userRole }}>
       {children}
     </AuthContext.Provider>
   );

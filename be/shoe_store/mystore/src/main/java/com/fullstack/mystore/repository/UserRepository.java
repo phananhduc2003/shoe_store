@@ -1,5 +1,11 @@
 package com.fullstack.mystore.repository;
 
-public class UserRepository {
 
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.fullstack.mystore.entity.User;
+
+public interface UserRepository extends JpaRepository<User, Integer>{
+	
 }

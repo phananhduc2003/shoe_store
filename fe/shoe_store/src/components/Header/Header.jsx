@@ -1,9 +1,12 @@
 import { Box, Grid, Menu, MenuItem, Typography } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useState } from "react";
+
 import DarkMode from "../../theme/DarkMode";
-import logo from "../../assets/images/logo.svg";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useState } from "react";
+import logo from "../../assets/images/logo.svg";
 
 const wrapper = {
   display: "flex",
@@ -21,9 +24,6 @@ const wrapper = {
 };
 
 function Header() {
-  const purposes = ["Running", "Football", "Casual", "Outdoor", "Winter"];
-  const brands = ["Nike", "Adidas", "Puma", "Converse", "Vans"];
-
   const purposeMapping = {
     Running: 1,
     Football: 2,
@@ -40,10 +40,15 @@ function Header() {
     Vans: 5,
   };
 
+  const purposes = ["Running", "Football", "Casual", "Outdoor", "Winter"];
+  const brands = ["Nike", "Adidas", "Puma", "Converse", "Vans"];
+
+  const authContext = useAuth();
+  const isAuthenticated = authContext.isAuthenticated;
+  const navigate = useNavigate();
+
   const [anchorElExplore, setAnchorElExplore] = useState(null);
   const [anchorElBrands, setAnchorElBrands] = useState(null);
-
-  const navigate = useNavigate();
 
   const handleExploreOpen = (event) => {
     setAnchorElExplore(event.currentTarget);
@@ -65,6 +70,17 @@ function Header() {
     navigate(path, { state: filters });
     handleExploreClose();
     handleBrandsClose();
+  };
+  const Logout = () => {
+    authContext.Logout();
+  };
+
+  const handleCheckCart = () => {
+    if (isAuthenticated) {
+      navigate(`/cart`);
+    } else {
+      navigate(`/login`);
+    }
   };
 
   return (
@@ -237,6 +253,7 @@ function Header() {
             </Grid>
             <Grid
               item
+              onClick={handleCheckCart}
               sx={{
                 color: "text.primary",
                 cursor: "pointer",
@@ -248,46 +265,77 @@ function Header() {
               <AddShoppingCartIcon />
             </Grid>
             <Grid item>
-              <Grid
-                container
-                alignItems="center"
-                justifyContent="flex-end"
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography
-                    sx={{
-                      fontSize: "14px",
-                      fontWeight: 500,
-                      cursor: "pointer",
-                      "&:hover": {
-                        color: "text.secondary",
-                      },
-                    }}
-                    onClick={() => handleNavigation("/login")}
-                  >
-                    Sign Up
-                  </Typography>
+              {!isAuthenticated ? (
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="flex-end"
+                  spacing={1}
+                >
+                  <Grid item>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        cursor: "pointer",
+                        "&:hover": {
+                          color: "text.secondary",
+                        },
+                      }}
+                      onClick={() => handleNavigation("/login")}
+                    >
+                      Sign Up
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography>|</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        cursor: "pointer",
+                        "&:hover": {
+                          color: "text.secondary",
+                        },
+                      }}
+                      onClick={() => handleNavigation("/login")}
+                    >
+                      Sign In
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography>|</Typography>
+              ) : (
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="flex-end"
+                  spacing={1}
+                >
+                  <Grid item>
+                    <AccountCircleIcon />
+                  </Grid>
+                  <Grid item>
+                    <Typography>|</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        cursor: "pointer",
+                        "&:hover": {
+                          color: "text.secondary",
+                        },
+                      }}
+                      onClick={Logout}
+                    >
+                      Logout
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography
-                    sx={{
-                      fontSize: "14px",
-                      fontWeight: 500,
-                      cursor: "pointer",
-                      "&:hover": {
-                        color: "text.secondary",
-                      },
-                    }}
-                    onClick={() => handleNavigation("/login")}
-                  >
-                    Sign In
-                  </Typography>
-                </Grid>
-              </Grid>
+              )}
             </Grid>
           </Grid>
         </Box>

@@ -84,10 +84,7 @@ VALUES
 
 
 
-
-
-
-INSERT INTO app_user (id,name, address, phone, usename, password, role) VALUES
+INSERT INTO app_user (id,name, address, phone, username, password, role) VALUES
 (1,'Admin', 'Ha Noi', 0338288176, 'Duc', '123456', 1),
 (2,'John Doe', '123 Main St, Cityville', 0123456789, 'johndoe', '123', 0),
 (3,'Jane Smith', '456 Oak Ave, Townsville', 0987654321, 'janesmith', '123', 0),
