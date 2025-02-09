@@ -25,7 +25,7 @@ public class User {
 	private String address;
 	@Column(length = 10)
 	private Integer phone;
-	private String usename;
+	private String username;
 	private String password;
 	private Integer role;
 	
@@ -70,12 +70,12 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getUsename() {
-		return usename;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsename(String usename) {
-		this.usename = usename;
+	public void setUsename(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

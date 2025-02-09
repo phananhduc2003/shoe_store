@@ -39,6 +39,8 @@ function Login() {
   const vertical = "top";
   const horizontal = "right";
 
+  // const userRole = authContext.userRole;
+
   const handleUsername = (e) => {
     setUsername(e.target.value);
     setOpen(false); // Đóng Snackbar khi người dùng nhập lại
@@ -51,8 +53,14 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (authContext.Login(username, password)) {
-      navigate(`/`);
+    const role = authContext.Login(username, password); // Lấy role sau khi đăng nhập
+
+    if (role !== null) {
+      if (role === 1) {
+        navigate(`/homeAdmin`);
+      } else {
+        navigate(`/`);
+      }
     } else {
       setOpen(true);
     }

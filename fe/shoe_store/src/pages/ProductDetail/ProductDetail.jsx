@@ -29,7 +29,7 @@ function ProductDetail() {
                     // k cần fix cứng width, heightheight
                     width: "100%",
                     height: "0",
-                    paddingTop: "100%", //  Tỷ Lệ 1:1 (Hình vuông)( paddingTop: "56.25%", Tỷ lệ 16:9,  paddingTop: "80%",Tỷ lệ 4:5)
+                    paddingTop: "80%", //  Tỷ Lệ 1:1 (Hình vuông)( paddingTop: "56.25%", Tỷ lệ 16:9,  paddingTop: "80%",Tỷ lệ 4:5)
 
                     backgroundImage: `url(${data.image})`,
                     backgroundSize: "contain", // Changed from "cover" to "contain"
