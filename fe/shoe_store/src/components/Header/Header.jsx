@@ -1,4 +1,14 @@
-import { Box, Grid, Menu, MenuItem, Typography } from "@mui/material";
+import {
+  Badge,
+  badgeClasses,
+  Box,
+  Grid,
+  IconButton,
+  Menu,
+  MenuItem,
+  styled,
+  Typography,
+} from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import DarkMode from "../../theme/DarkMode";
@@ -22,6 +32,13 @@ const wrapper = {
   boxShadow: 4,
   zIndex: 1200,
 };
+
+const CartBadge = styled(Badge)`
+  & .${badgeClasses.badge} {
+    top: -12px;
+    right: -6px;
+  }
+`;
 
 function Header() {
   const purposeMapping = {
@@ -262,7 +279,14 @@ function Header() {
                 },
               }}
             >
-              <AddShoppingCartIcon />
+              <IconButton>
+                <AddShoppingCartIcon fontSize="small" />
+                <CartBadge
+                  badgeContent={2}
+                  color="primary"
+                  overlap="circular"
+                />
+              </IconButton>
             </Grid>
             <Grid item>
               {!isAuthenticated ? (
