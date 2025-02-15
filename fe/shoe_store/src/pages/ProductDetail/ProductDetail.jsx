@@ -53,7 +53,7 @@ function ProductDetail() {
                       {data.name}
                     </Typography>
                     <Typography variant="h6" fontWeight="400" fontSize={"18px"}>
-                      {data.price} $
+                      {data.price} ₫
                     </Typography>
                     <Box sx={{ mt: 8 }}>
                       <Typography sx={{ fontWeight: 500 }}>

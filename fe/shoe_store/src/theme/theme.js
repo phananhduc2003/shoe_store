@@ -5,6 +5,7 @@ const theme = extendTheme({
   customHeader: {
     textTitle: "18px",
   },
+
   colorSchemes: {
     light: {
       palette: {
