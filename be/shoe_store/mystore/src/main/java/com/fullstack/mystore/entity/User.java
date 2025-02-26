@@ -2,6 +2,8 @@ package com.fullstack.mystore.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,10 +20,19 @@ public class User {
 		
 	}
 	
+	public User(Integer userId) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
 	private String name;
+	
+	@Column(unique = true, nullable = false)
+	private String email;
+	
 	private String address;
 	@Column(length = 10)
 	private Integer phone;
@@ -30,9 +41,11 @@ public class User {
 	private Integer role;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonBackReference
     private List<ShoppingCart> shoppingCarts;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonBackReference
     private List<ShopOrder> shopOrders;
 	
 	@OneToMany(mappedBy = "user")
@@ -52,6 +65,15 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {

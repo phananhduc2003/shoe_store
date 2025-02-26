@@ -2,8 +2,12 @@ package com.fullstack.mystore.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,20 +17,22 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class ShoppingCart {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String transactionIdUser;
     private String transactionIdMerchant;
     
     @OneToOne
-    @JoinColumn(name = "shop_order_id")
+    @JoinColumn(name = "shop_order_id", unique = true)
+    @JsonIgnore
     private ShopOrder shopOrder;
     
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     
-    @OneToMany(mappedBy = "shoppingCart")
+    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<ShoppingCartItem> items;
     
     public Integer getId() {

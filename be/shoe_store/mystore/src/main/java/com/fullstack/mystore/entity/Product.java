@@ -2,8 +2,7 @@ package com.fullstack.mystore.entity;
 
 import java.util.List;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,16 +26,23 @@ public class Product {
     
     @ManyToOne
     @JoinColumn(name = "PRODUCT_CATEGORY_ID")
-    @JsonIgnore 
+    
     private ProductCategoryBrand productCategoryBrand;
-
+    
     @OneToMany(mappedBy = "product")
-    @JsonIgnore
     private List<ProductCategoryBrandPurpose> productCategoryBrandPurposes; 
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnore
+    @JsonBackReference
     private List<ShoppingCartItem> shoppingCartItems;
+    
+    // Constructor không tham số (cần cho Hibernate)
+    public Product() {}
+
+    // Constructor với id để sử dụng trong truy vấn
+    public Product(Integer id) {
+        this.id = id;
+    }
 
 	public Integer getId() {
 		return id;

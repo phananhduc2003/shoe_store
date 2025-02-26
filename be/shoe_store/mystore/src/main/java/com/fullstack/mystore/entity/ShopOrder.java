@@ -3,25 +3,35 @@ package com.fullstack.mystore.entity;
 
 import java.time.LocalDateTime;
 
+import com.fullstack.mystore.enums.OrderStatus;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+
 
 @Entity
 public class ShopOrder {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Temporal(TemporalType.TIMESTAMP)
+	
     private LocalDateTime dateOrder;
 	private double totalPrice;
-    private String statusOrder;
+    
+	@Enumerated(EnumType.STRING)
+	private OrderStatus statusOrder;
+
     private String addressShipping;
+    
+    private String paymentMethod;
+    private String paymentStatus;
     
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -54,20 +64,37 @@ public class ShopOrder {
 		this.totalPrice = totalPrice;
 	}
 
-	public String getStatusOrder() {
-		return statusOrder;
+	public OrderStatus getStatusOrder() {
+	    return statusOrder;
 	}
 
-	public void setStatusOrder(String statusOrder) {
-		this.statusOrder = statusOrder;
+	public void setStatusOrder(OrderStatus statusOrder) {
+	    this.statusOrder = statusOrder;
 	}
-
 	public String getAddressShipping() {
 		return addressShipping;
 	}
 
 	public void setAddressShipping(String addressShipping) {
 		this.addressShipping = addressShipping;
+	}
+
+	
+	
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
 
 	public User getUser() {

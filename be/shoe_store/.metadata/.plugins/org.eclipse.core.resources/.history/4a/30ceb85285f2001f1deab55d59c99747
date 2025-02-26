@@ -1,0 +1,37 @@
+ package com.fullstack.mystore.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.ShoppingCart;
+import com.fullstack.mystore.entity.ShoppingCartItem;
+import com.fullstack.mystore.repository.ShoppingCartRepository;
+
+@RestController
+public class ShoppingCartController {
+	@Autowired
+	public ShoppingCartRepository shoppingCartRepository;
+
+	public ShoppingCartController(ShoppingCartRepository shoppingCartRepository) {
+		super();
+		this.shoppingCartRepository = shoppingCartRepository;
+	}
+	
+	@GetMapping("/cart/{userId}")
+    public List<ShoppingCartItem> getCartItems(@PathVariable Integer userId) {
+        // Tìm giỏ hàng của người dùng từ repository
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId);
+        
+        if (shoppingCart != null) {
+            // Trả về danh sách các mặt hàng trong giỏ hàng của người dùng
+            return shoppingCart.getItems();
+        } else {
+            // Nếu không tìm thấy giỏ hàng, trả về danh sách rỗng hoặc thông báo lỗi
+            return List.of();  // Hoặc bạn có thể trả về một thông báo lỗi tùy thích
+        }
+    }
+}

@@ -1,0 +1,33 @@
+package com.fullstack.mystore.controller;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.entity.ShoppingCart;
+import com.fullstack.mystore.entity.ShoppingCartItem;
+import com.fullstack.mystore.entity.User;
+import com.fullstack.mystore.repository.ProductRepository;
+import com.fullstack.mystore.repository.ShoppingCartItemRepository;
+import com.fullstack.mystore.repository.ShoppingCartRepository;
+import com.fullstack.mystore.repository.UserRepository;
+
+@RestController
+@RequestMapping("/api/cart")
+public class ShoppingCartItemController {
+
+    @Autowired
+    private ShoppingCartItemRepository shoppingCartItemRepository;
+
+   
+    }
+	
+}

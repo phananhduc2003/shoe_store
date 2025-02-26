@@ -1,0 +1,110 @@
+package com.fullstack.mystore.controller;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.entity.ShoppingCart;
+import com.fullstack.mystore.entity.ShoppingCartItem;
+import com.fullstack.mystore.entity.User;
+import com.fullstack.mystore.repository.ProductRepository;
+import com.fullstack.mystore.repository.ShoppingCartItemRepository;
+import com.fullstack.mystore.repository.ShoppingCartRepository;
+import com.fullstack.mystore.repository.UserRepository;
+
+@RestController
+@RequestMapping("/api/cart")
+public class ShoppingCartItemController {
+
+    @Autowired
+    private ShoppingCartItemRepository shoppingCartItemRepository;
+
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    // API thêm sản phẩm vào giỏ hàng
+    @PostMapping("/add")
+    public ResponseEntity<String> addToCart(@RequestParam Integer userId, 
+                                            @RequestParam Integer productId, 
+                                            @RequestParam int quantity) {
+        // Tìm user
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            return ResponseEntity.badRequest().body("Người dùng không tồn tại.");
+        }
+        User user = userOptional.get();
+
+        // Tìm sản phẩm
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (!productOptional.isPresent()) {
+            return ResponseEntity.badRequest().body("Sản phẩm không tồn tại.");
+        }
+        Product product = productOptional.get();
+
+        // Kiểm tra số lượng sản phẩm có đủ không
+        if (product.getQuantity() < quantity) {
+            return ResponseEntity.badRequest().body("Số lượng sản phẩm không đủ.");
+        }
+
+        // Kiểm tra giỏ hàng của user
+        final ShoppingCart shoppingCart = shoppingCartRepository.findByUser(user)
+                .orElseGet(() -> {
+                    ShoppingCart newCart = new ShoppingCart();
+                    newCart.setUser(user);
+                    return shoppingCartRepository.save(newCart);
+                });
+
+        // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+        Optional<ShoppingCartItem> cartItemOptional = shoppingCartItemRepository.findByShoppingCartAndProduct(shoppingCart, product);
+        
+        ShoppingCartItem cartItem;
+        if (cartItemOptional.isPresent()) {
+            cartItem = cartItemOptional.get();
+            cartItem.setQuantity(cartItem.getQuantity() + quantity);
+        } else {
+            cartItem = new ShoppingCartItem();
+            cartItem.setShoppingCart(shoppingCart);
+            cartItem.setProduct(product);
+            cartItem.setQuantity(quantity);  // Sử dụng `quantity` trực tiếp
+        }
+
+        shoppingCartItemRepository.save(cartItem);
+
+        return ResponseEntity.ok("Sản phẩm đã được thêm vào giỏ hàng.");
+    }
+
+    // API lấy danh sách sản phẩm trong giỏ hàng của user
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getCart(@PathVariable Integer userId) {
+        // Tìm user
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            return ResponseEntity.badRequest().body("Người dùng không tồn tại.");
+        }
+        User user = userOptional.get();
+
+        // Lấy giỏ hàng của user
+        Optional<ShoppingCart> shoppingCartOptional = shoppingCartRepository.findByUser(user);
+        if (!shoppingCartOptional.isPresent()) {
+            return ResponseEntity.ok("Giỏ hàng trống.");
+        }
+        ShoppingCart shoppingCart = shoppingCartOptional.get();
+
+        return ResponseEntity.ok(shoppingCart.getItems());
+    }
+	
+}

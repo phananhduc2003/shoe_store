@@ -1,7 +1,9 @@
 package com.fullstack.mystore.entity;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -9,16 +11,16 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class ShoppingCartItem {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private int quantity;
 	
 	@ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 	
 	@ManyToOne
-    @JoinColumn(name = "shopping_cart_id")
+    @JoinColumn(name = "shopping_cart_id", nullable = false)
     private ShoppingCart shoppingCart;
 
 	public Integer getId() {
