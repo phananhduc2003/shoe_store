@@ -7,8 +7,63 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { useEffect, useState } from "react";
+import { ApiCartUser } from "../../apiService/ApiCartUser";
+import { useParams } from "react-router-dom";
+import { ApiTotalItem } from "../../apiService/ApiTotalItem";
+import { ApiIncreaseItemInCart } from "../../apiService/ApiIncreaseItemInCart";
+import { ApiDecreaseItemInCart } from "../../apiService/ApiDecreaseItemInCart";
 
 function Cart() {
+  const { idUser } = useParams();
+
+  const [DataCartUser, setDataCartUser] = useState([]);
+  const [totalItem, setTotalItem] = useState();
+  const [responseIncreaseItem, setResponseIncreaseItem] = useState();
+  const [responseDecreaseItem, setResponseDecreaseItem] = useState();
+
+  useEffect(() => retrieveProduct(), []);
+  const retrieveProduct = () => {
+    ApiCartUser(idUser)
+      .then((response) => {
+        setDataCartUser(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => retrieveTotalItem(), []);
+  const retrieveTotalItem = () => {
+    ApiTotalItem(idUser)
+      .then((response) => {
+        setTotalItem(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  console.log(responseDecreaseItem + responseIncreaseItem);
+
+  const handleIncreaseItem = (idProduct) => {
+    ApiIncreaseItemInCart({ idUser, idProduct })
+      .then((response) => {
+        setResponseIncreaseItem(response.data);
+        retrieveProduct();
+        retrieveTotalItem();
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleDecreaseItem = (idProduct) => {
+    ApiDecreaseItemInCart({ idUser, idProduct })
+      .then((response) => {
+        setResponseDecreaseItem(response.data);
+        retrieveProduct();
+        retrieveTotalItem();
+      })
+      .catch((error) => console.log(error));
+  };
+
+  console.log(DataCartUser);
+
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
@@ -25,214 +80,113 @@ function Cart() {
                 Bag
               </Typography>
 
-              <Card
-                sx={{
-                  display: "flex",
-                  marginBottom: 3,
-                  borderRadius: 0,
-                  borderBottom: "1px solid #ccc", // Đường kẻ ngang dưới cùng
-                  bgcolor: "background.default",
-                }}
-              >
-                <Box
+              {DataCartUser.map((data) => (
+                <Card
+                  key={data.id}
                   sx={{
                     display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    marginBottom: 3,
+                    borderRadius: 0,
+                    borderBottom: "1px solid #ccc", // Đường kẻ ngang dưới cùng
+                    bgcolor: "background.default",
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      width: { xs: 80, sm: 120, md: 150 },
-                      height: "auto",
-                      borderRadius: 1,
-                    }}
-                    image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,b_rgb:f5f5f5/c4ebefeb-5ddf-4b4f-b6e5-e8bbd94cfada/v2k-run-shoes-Zk2zRL.png"
-                    alt="Live from space album cover"
-                  />
                   <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    borderRadius="50px"
-                    border="2px solid #ccc"
                     sx={{
-                      width: "100%",
-                      maxWidth: "100px",
-                      minWidth: "50px",
-                      height: "40px",
-                      my: 2,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
                     }}
                   >
-                    <Button
-                      // onClick={() => setCount(count - 1)}
-
+                    <CardMedia
+                      component="img"
                       sx={{
-                        minWidth: "20px",
-                        height: "40px",
-                        borderRadius: 6,
-                        fontSize: "18px",
-                        color: "text.primary",
+                        width: { xs: 80, sm: 120, md: 150 },
+                        height: "auto",
+                        borderRadius: 1,
                       }}
-                    >
-                      –
-                    </Button>
-                    <Typography
-                      variant="h6"
-                      sx={{ mx: 2, color: "text.primary" }}
-                    >
-                      1
-                    </Typography>
-                    <Button
-                      // onClick={() => setCount(count + 1)}
-                      sx={{
-                        minWidth: "20px",
-                        height: "40px",
-                        borderRadius: 6,
-                        fontSize: "18px",
-                        color: "text.primary",
-                      }}
-                    >
-                      +
-                    </Button>
-                  </Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                  }}
-                >
-                  <CardContent>
+                      image={data.product.image}
+                      alt={data.product.name}
+                    />
                     <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      borderRadius="50px"
+                      border="2px solid #ccc"
                       sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
                         width: "100%",
+                        maxWidth: "100px",
+                        minWidth: "50px",
+                        height: "40px",
+                        my: 2,
                       }}
                     >
-                      <Typography sx={{ fontWeight: 500, fontSize: "20px" }}>
-                        Live From Space
+                      <Button
+                        onClick={() => handleDecreaseItem(data.product.id)}
+                        sx={{
+                          minWidth: "20px",
+                          height: "40px",
+                          borderRadius: 6,
+                          fontSize: "18px",
+                          color: "text.primary",
+                        }}
+                      >
+                        –
+                      </Button>
+                      <Typography
+                        variant="h6"
+                        sx={{ mx: 2, color: "text.primary" }}
+                      >
+                        {data.quantity}
                       </Typography>
-                      <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                        1.000.000₫
-                      </Typography>
+                      <Button
+                        onClick={() => handleIncreaseItem(data.product.id)}
+                        sx={{
+                          minWidth: "20px",
+                          height: "40px",
+                          borderRadius: 6,
+                          fontSize: "18px",
+                          color: "text.primary",
+                        }}
+                      >
+                        +
+                      </Button>
                     </Box>
-                    <Typography
-                      variant="subtitle1"
-                      component="div"
-                      sx={{ color: "text.secondary" }}
-                    >
-                      Mac Miller
-                    </Typography>
-                  </CardContent>
-                </Box>
-              </Card>
-              <Card
-                sx={{
-                  display: "flex",
-                  bgcolor: "background.default",
-                  borderBottom: "1px solid #ccc",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      width: { xs: 80, sm: 120, md: 150 },
-                      height: "auto",
-                      borderRadius: 1,
-                    }}
-                    image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,b_rgb:f5f5f5/c4ebefeb-5ddf-4b4f-b6e5-e8bbd94cfada/v2k-run-shoes-Zk2zRL.png"
-                    alt="Live from space album cover"
-                  />
+                  </Box>
                   <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    borderRadius="50px"
-                    border="2px solid #ccc"
                     sx={{
+                      display: "flex",
+                      flexDirection: "column",
                       width: "100%",
-                      maxWidth: "100px",
-                      minWidth: "50px",
-                      height: "40px",
-                      my: 2,
                     }}
                   >
-                    <Button
-                      // onClick={() => setCount(count - 1)}
-                      disableRipple
-                      sx={{
-                        minWidth: "20px",
-                        height: "40px",
-                        borderRadius: 6,
-                        fontSize: "18px",
-                        color: "text.primary",
-                      }}
-                    >
-                      -
-                    </Button>
-                    <Typography
-                      variant="h6"
-                      sx={{ mx: 2, color: "text.primary" }}
-                    >
-                      1
-                    </Typography>
-                    <Button
-                      // onClick={() => setCount(count + 1)}
-                      sx={{
-                        minWidth: "20px",
-                        height: "40px",
-                        fontSize: "18px",
-                        color: "text.primary",
-                        borderRadius: 6,
-                      }}
-                    >
-                      +
-                    </Button>
+                    <CardContent>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          width: "100%",
+                        }}
+                      >
+                        <Typography sx={{ fontWeight: 500, fontSize: "20px" }}>
+                          {data.product.name}
+                        </Typography>
+                        <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
+                          {data.product.price}₫
+                        </Typography>
+                      </Box>
+                      <Typography
+                        variant="subtitle1"
+                        component="div"
+                        sx={{ color: "text.secondary" }}
+                      >
+                        {data.product.description}
+                      </Typography>
+                    </CardContent>
                   </Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                  }}
-                >
-                  <CardContent>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        width: "100%",
-                      }}
-                    >
-                      <Typography sx={{ fontWeight: 500, fontSize: "20px" }}>
-                        Live From Space
-                      </Typography>
-                      <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                        1.000.000₫
-                      </Typography>
-                    </Box>
-                    <Typography
-                      variant="subtitle1"
-                      component="div"
-                      sx={{ color: "text.secondary" }}
-                    >
-                      Mac Miller
-                    </Typography>
-                  </CardContent>
-                </Box>
-              </Card>
+                </Card>
+              ))}
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
               <Box sx={{ marginLeft: 2 }}>
@@ -253,7 +207,7 @@ function Cart() {
                     Subtotal
                   </Typography>
                   <Typography sx={{ fontWeight: 500, fontSize: "16px" }}>
-                    123842,231
+                    {totalItem}₫
                   </Typography>
                 </Box>
                 <Box
@@ -283,7 +237,7 @@ function Cart() {
                     Total
                   </Typography>
                   <Typography sx={{ fontWeight: 500, fontSize: "16px" }}>
-                    123842,231
+                    {totalItem}₫
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>

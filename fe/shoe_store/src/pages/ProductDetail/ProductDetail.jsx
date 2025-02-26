@@ -1,14 +1,40 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Grid,
+  Slide,
+  Snackbar,
+  Typography,
+} from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useParams } from "react-router-dom";
 import { ApiProductDetail } from "../../apiService/ApiProductDetail";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { ApiAddItemToCart } from "../../apiService/ApiAddItemTocart";
 
 function ProductDetail() {
-  const { id } = useParams();
+  const vertical = "top";
+  const horizontal = "right";
 
+  const { id } = useParams();
+  const authContext = useAuth();
+  const isAuthenticated = authContext.isAuthenticated;
+  const navigate = useNavigate();
+  const idUser = authContext.idUser;
+
+  const [quantityItem, setQuantityItem] = useState(1);
   const [dataProductDetail, setDataProductDetail] = useState([]);
-  useEffect(() => retrieveProduct(), [id]);
+  const [responseAddItemToCart, setResponseAddItemToCart] = useState();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (id) {
+      retrieveProduct();
+    }
+  }, [id]);
   const retrieveProduct = () => {
     ApiProductDetail(id)
       .then((response) => {
@@ -17,8 +43,79 @@ function ProductDetail() {
       .catch((error) => console.log(error));
   };
 
+  // Hàm xử lý thêm vào giỏ hàng
+  const handleAddItemToCart = () => {
+    // Kiểm tra idUser và quantityItem
+    if (idUser && quantityItem) {
+      if (!idUser) {
+        console.error("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng");
+        return;
+      }
+      ApiAddItemToCart({ idUser, id, quantityItem })
+        .then((response) => {
+          setResponseAddItemToCart(response.data);
+          setOpen(true);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      console.error("Thiếu thông tin cần thiết để thêm vào giỏ hàng");
+    }
+  };
+
+  const handleDecreaseQuantityItem = () => {
+    // Decrease quantity but don't allow it to go below 1
+    if (quantityItem > 1) {
+      setQuantityItem(quantityItem - 1);
+    }
+  };
+
+  const handleIncreaseQuantityItem = () => {
+    // Increase quantity by 1
+    setQuantityItem(quantityItem + 1);
+  };
+
+  const handleCheckLogin = () => {
+    //neu isAuthenticated thi cho add vao cart
+    if (isAuthenticated) {
+      handleAddItemToCart();
+    } else {
+      navigate(`/login`);
+    }
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  function TransitionLeft(props) {
+    return <Slide {...props} direction="left" />;
+  }
+
   return (
     <>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        TransitionComponent={TransitionLeft}
+        anchorOrigin={{ vertical, horizontal }}
+        sx={{ mt: 5 }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          sx={{
+            width: "100%",
+            backgroundColor: "primary.light",
+            color: "text.primary",
+          }}
+        >
+          {responseAddItemToCart}.
+        </Alert>
+      </Snackbar>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Box sx={{ width: "1200px", mt: 5 }}>
           {dataProductDetail.map((data) => (
@@ -218,8 +315,54 @@ function ProductDetail() {
                         </Grid>
                       </Grid>
                     </Box>
-                    <Box sx={{ mt: 5 }}>
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      borderRadius="50px"
+                      border="2px solid #ccc"
+                      sx={{
+                        width: "100%",
+                        maxWidth: "100px",
+                        minWidth: "50px",
+                        height: "40px",
+                        my: 2,
+                      }}
+                    >
                       <Button
+                        onClick={handleDecreaseQuantityItem}
+                        sx={{
+                          minWidth: "20px",
+                          height: "40px",
+                          borderRadius: 6,
+                          fontSize: "18px",
+                          color: "text.primary",
+                        }}
+                      >
+                        –
+                      </Button>
+                      <Typography
+                        variant="h6"
+                        sx={{ mx: 2, color: "text.primary" }}
+                      >
+                        {quantityItem}
+                      </Typography>
+                      <Button
+                        onClick={handleIncreaseQuantityItem}
+                        sx={{
+                          minWidth: "20px",
+                          height: "40px",
+                          borderRadius: 6,
+                          fontSize: "18px",
+                          color: "text.primary",
+                        }}
+                      >
+                        +
+                      </Button>
+                    </Box>
+                    <Box sx={{ mt: 3 }}>
+                      <Button
+                        onClick={handleCheckLogin}
                         variant="contained"
                         sx={{ width: "100%", height: "50px", borderRadius: 10 }}
                       >

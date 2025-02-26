@@ -60,9 +60,10 @@ function Header() {
   const purposes = ["Running", "Football", "Casual", "Outdoor", "Winter"];
   const brands = ["Nike", "Adidas", "Puma", "Converse", "Vans"];
 
+  const navigate = useNavigate();
   const authContext = useAuth();
   const isAuthenticated = authContext.isAuthenticated;
-  const navigate = useNavigate();
+  const idUser = authContext.idUser;
 
   const [anchorElExplore, setAnchorElExplore] = useState(null);
   const [anchorElBrands, setAnchorElBrands] = useState(null);
@@ -94,7 +95,7 @@ function Header() {
 
   const handleCheckCart = () => {
     if (isAuthenticated) {
-      navigate(`/cart`);
+      navigate(`/cart/${idUser}`);
     } else {
       navigate(`/login`);
     }
@@ -280,9 +281,12 @@ function Header() {
               }}
             >
               <IconButton>
-                <AddShoppingCartIcon fontSize="small" />
+                <AddShoppingCartIcon
+                  fontSize="small"
+                  sx={{ color: "text.primary" }}
+                />
                 <CartBadge
-                  badgeContent={2}
+                  // badgeContent={2}
                   color="primary"
                   overlap="circular"
                 />

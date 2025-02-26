@@ -1,0 +1,96 @@
+ package com.fullstack.mystore.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.entity.ShoppingCart;
+import com.fullstack.mystore.entity.ShoppingCartItem;
+import com.fullstack.mystore.entity.User;
+import com.fullstack.mystore.repository.ProductRepository;
+import com.fullstack.mystore.repository.ShoppingCartItemRepository;
+import com.fullstack.mystore.repository.ShoppingCartRepository;
+import com.fullstack.mystore.repository.UserRepository;
+
+@RestController
+@RequestMapping("/cart")
+public class ShoppingCartController {
+
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
+
+    @Autowired
+    private ShoppingCartItemRepository shoppingCartItemRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public ShoppingCartController(ShoppingCartRepository shoppingCartRepository) {
+        this.shoppingCartRepository = shoppingCartRepository;
+    }
+
+    // 📌 API: Lấy danh sách sản phẩm trong giỏ hàng
+    @GetMapping("/{userId}")
+    public List<ShoppingCartItem> getCartItems(@PathVariable Integer userId) {
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId);
+        return shoppingCart != null ? shoppingCart.getItems() : List.of();
+    }
+
+    // 📌 API: Thêm sản phẩm vào giỏ hàng
+    @PostMapping("/add")
+    public ResponseEntity<?> addToCart(@RequestParam Integer userId, @RequestParam Integer productId) {
+        // Kiểm tra user
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body("User không tồn tại.");
+        }
+        User user = userOptional.get();
+
+        // Kiểm tra sản phẩm
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (productOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body("Sản phẩm không tồn tại.");
+        }
+        Product product = productOptional.get();
+
+        // Kiểm tra giỏ hàng của user
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId);
+        if (shoppingCart == null) {
+            shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+            shoppingCart = shoppingCartRepository.save(shoppingCart);
+        }
+
+        // Kiểm tra sản phẩm trong giỏ hàng
+        Optional<ShoppingCartItem> cartItemOptional = shoppingCartItemRepository.findByShoppingCart(shoppingCart)
+                .stream()
+                .filter(item -> item.getProduct().getId().equals(productId))
+                .findFirst();
+
+        if (cartItemOptional.isPresent()) {
+            ShoppingCartItem cartItem = cartItemOptional.get();
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
+            shoppingCartItemRepository.save(cartItem);
+        } else {
+            ShoppingCartItem newItem = new ShoppingCartItem();
+            newItem.setShoppingCart(shoppingCart);
+            newItem.setProduct(product);
+            newItem.setQuantity(1);
+            shoppingCartItemRepository.save(newItem);
+        }
+
+        return ResponseEntity.ok("Thêm sản phẩm vào giỏ hàng thành công.");
+    }
+}

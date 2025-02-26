@@ -1,0 +1,68 @@
+package com.fullstack.mystore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.ShoppingCart;
+import com.fullstack.mystore.entity.ShoppingCartItem;
+import com.fullstack.mystore.entity.User;
+import com.fullstack.mystore.repository.ShoppingCartItemRepository;
+import com.fullstack.mystore.repository.ShoppingCartRepository;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+public class ShoppingCartItemController {
+	@Autowired
+	private ShoppingCartItemRepository shoppingCartItemRepository;
+	
+	@Autowired
+	private ShoppingCartRepository shoppingCartRepository;
+	
+	@Autowired
+	private User user;
+
+	public ShoppingCartItemController(ShoppingCartItemRepository shoppingCartItemRepository, ShoppingCartRepository shoppingCartRepository,User user) {
+		super();
+		this.shoppingCartItemRepository = shoppingCartItemRepository;
+		this.shoppingCartRepository = shoppingCartRepository;
+		this.user = user;
+	}
+	
+	@PostMapping("/{userId}/addItemtoCart")
+    public ResponseEntity<String> addItemtoCart(@PathVariable Integer userId, @RequestBody ShoppingCartItem shoppingCartItem) {
+        // Kiểm tra xem người dùng có tồn tại hay không (ví dụ: gọi dịch vụ User để kiểm tra)
+        // Giả sử User đã tồn tại trong hệ thống.
+        
+        // Tạo giỏ hàng (nếu người dùng chưa có giỏ hàng)
+        ShoppingCart shoppingCart = findOrCreateShoppingCartForUser(userId);
+        
+        // Gán giỏ hàng cho ShoppingCartItem
+        shoppingCartItem.setShoppingCart(shoppingCart);
+        
+        // Lưu ShoppingCartItem vào repository
+        shoppingCartItemRepository.save(shoppingCartItem);
+        
+        return ResponseEntity.ok("Item added to cart successfully!");
+    }
+
+    private ShoppingCart findOrCreateShoppingCartForUser(Integer userId) {
+        // Giả sử bạn có phương thức này để tìm giỏ hàng của người dùng hoặc tạo mới nếu chưa có
+        // Đây là một ví dụ đơn giản, bạn có thể mở rộng để xử lý các trường hợp khác.
+        
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId);
+        
+        if (shoppingCart == null) {
+            shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(new User(userId)); // Cần phải kiểm tra và tạo user thật sự nếu cần
+            shoppingCartRepository.save(shoppingCart);
+        }
+        
+        return shoppingCart;
+    }
+	
+}
+ 

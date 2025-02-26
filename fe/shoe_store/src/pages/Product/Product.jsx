@@ -19,7 +19,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { ProductApi } from "../../apiService/ProductApi";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 function Product() {
   const location = useLocation();
