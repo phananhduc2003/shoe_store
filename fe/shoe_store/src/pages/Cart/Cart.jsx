@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import { ApiTotalItem } from "../../apiService/ApiTotalItem";
 import { ApiIncreaseItemInCart } from "../../apiService/ApiIncreaseItemInCart";
 import { ApiDecreaseItemInCart } from "../../apiService/ApiDecreaseItemInCart";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Cart() {
   const { idUser } = useParams();
@@ -61,6 +62,8 @@ function Cart() {
       })
       .catch((error) => console.log(error));
   };
+
+  const handleDeleteItem = () => {};
 
   console.log(DataCartUser);
 
@@ -157,33 +160,59 @@ function Cart() {
                   <Box
                     sx={{
                       display: "flex",
-                      flexDirection: "column",
                       width: "100%",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <CardContent>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          width: "100%",
-                        }}
-                      >
-                        <Typography sx={{ fontWeight: 500, fontSize: "20px" }}>
-                          {data.product.name}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "100%",
+                      }}
+                    >
+                      <CardContent>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            width: "100%",
+                          }}
+                        >
+                          <Typography
+                            sx={{ fontWeight: 500, fontSize: "20px" }}
+                          >
+                            {data.product.name}
+                          </Typography>
+                          <Typography
+                            sx={{ fontWeight: 500, fontSize: "18px" }}
+                          >
+                            {data.product.price}₫
+                          </Typography>
+                        </Box>
+                        <Typography
+                          variant="subtitle1"
+                          component="div"
+                          sx={{ color: "text.secondary" }}
+                        >
+                          {data.product.description}
                         </Typography>
-                        <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                          {data.product.price}₫
-                        </Typography>
-                      </Box>
-                      <Typography
-                        variant="subtitle1"
-                        component="div"
-                        sx={{ color: "text.secondary" }}
-                      >
-                        {data.product.description}
-                      </Typography>
-                    </CardContent>
+                      </CardContent>
+                    </Box>
+                    <Box
+                      onClick={() => {
+                        handleDeleteItem();
+                      }}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        mb: 3,
+                        mr: 2,
+                      }}
+                    >
+                      <DeleteIcon />
+                    </Box>
                   </Box>
                 </Card>
               ))}

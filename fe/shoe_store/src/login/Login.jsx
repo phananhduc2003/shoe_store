@@ -155,7 +155,6 @@ function Login() {
                         id="Username"
                         label="Username"
                         name="Username"
-                        autoComplete="Username"
                         InputProps={{
                           style: { color: "#ffffff" },
                         }}
@@ -189,7 +188,6 @@ function Login() {
                         id="Password"
                         label="Password"
                         name="Password"
-                        autoComplete="Password"
                         InputProps={{
                           style: { color: "#ffffff" },
                         }}

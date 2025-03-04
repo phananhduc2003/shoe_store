@@ -1,0 +1,188 @@
+ package com.fullstack.mystore.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.entity.ShoppingCart;
+import com.fullstack.mystore.entity.ShoppingCartItem;
+import com.fullstack.mystore.entity.User;
+import com.fullstack.mystore.repository.ProductRepository;
+import com.fullstack.mystore.repository.ShoppingCartItemRepository;
+import com.fullstack.mystore.repository.ShoppingCartRepository;
+import com.fullstack.mystore.repository.UserRepository;
+
+@RestController
+@RequestMapping("/cart")
+public class ShoppingCartController {
+	@Autowired
+    private ShoppingCartRepository shoppingCartRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private ShoppingCartItemRepository shoppingCartItemRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public ShoppingCartController(ShoppingCartRepository shoppingCartRepository) {
+        this.shoppingCartRepository = shoppingCartRepository;
+    }
+	
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getCartItems(@PathVariable Integer userId) {
+    	Optional<ShoppingCart> cartOptional = shoppingCartRepository.findByUserId(userId);
+
+        if (!cartOptional.isPresent()) {
+            return ResponseEntity.status(404).body("Giỏ hàng không tồn tại.");
+        }
+
+        ShoppingCart shoppingCart = cartOptional.orElseThrow();  // ✅ Giải bọc Optional
+        List<ShoppingCartItem> items = shoppingCart.getItems();
+
+        if (items.isEmpty()) {
+            return ResponseEntity.ok("Giỏ hàng trống.");
+        }
+
+        return ResponseEntity.ok(items);
+    }
+    
+    @GetMapping("/totalItem/{userId}")
+    public ResponseEntity<?> getTotalPrice(@PathVariable Integer userId) {
+    	Optional<ShoppingCart> cartOptional = shoppingCartRepository.findByUserId(userId);
+    	 ShoppingCart shoppingCart = cartOptional.get();
+    	    List<ShoppingCartItem> items = shoppingCart.getItems();
+
+    	    if (items.isEmpty()) {
+    	        return ResponseEntity.ok("Giỏ hàng trống.");
+    	    }
+
+    	    // Tính tổng giá trị của giỏ hàng
+    	    double totalPrice = items.stream()
+    	        .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
+    	        .sum();
+
+    	    return ResponseEntity.ok(totalPrice);
+    }
+    
+	@PostMapping("/addToCart")
+	public ResponseEntity<?> addToCart(@RequestParam Integer userId,
+	                                   @RequestParam Integer productId,
+	                                   @RequestParam int quantity) {
+	    // Kiểm tra user có tồn tại không
+	    Optional<User> userOptional = userRepository.findById(userId);
+	    if (!userOptional.isPresent()) {
+	        return ResponseEntity.status(404).body("Người dùng không tồn tại.");
+	    }
+	    User user = userOptional.get();
+
+	 // Lấy giỏ hàng của user, nếu không có thì tạo mới
+	    ShoppingCart shoppingCart = shoppingCartRepository.findByUser(user)
+	            .orElseGet(() -> {
+	                ShoppingCart newCart = new ShoppingCart();
+	                newCart.setUser(user);
+	                return shoppingCartRepository.save(newCart);
+	            });
+
+	    // Kiểm tra sản phẩm có tồn tại không
+	    Optional<Product> productOptional = productRepository.findById(productId);
+	    if (!productOptional.isPresent()) {
+	        return ResponseEntity.status(404).body("Sản phẩm không tồn tại.");
+	    }
+	    Product product = productOptional.get();
+
+	 // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+	    Optional<ShoppingCartItem> existingItemOptional = shoppingCartItemRepository.findByShoppingCartAndProduct(shoppingCart, product);
+
+	    if (existingItemOptional.isPresent()) {
+	        // Nếu sản phẩm đã có, chỉ cập nhật số lượng
+	        ShoppingCartItem existingItem = existingItemOptional.get(); // ✅ Giải bọc Optional
+	        existingItem.setQuantity(existingItem.getQuantity() + quantity);
+	        shoppingCartItemRepository.save(existingItem);
+	    } else {
+	        // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
+	        ShoppingCartItem newItem = new ShoppingCartItem();
+	        newItem.setShoppingCart(shoppingCart);
+	        newItem.setProduct(product);
+	        newItem.setQuantity(quantity);
+	        shoppingCartItemRepository.save(newItem);
+	    }
+	    return ResponseEntity.ok("Sản phẩm đã được thêm vào giỏ hàng.");
+	}
+	
+	@PutMapping("/increase")
+	public ResponseEntity<?> increaseItemQuantity(@RequestParam Integer userId, @RequestParam Integer productId) {
+	    // Tìm giỏ hàng của user
+	    Optional<ShoppingCart> cartOptional = shoppingCartRepository.findByUserId(userId);
+	    if (!cartOptional.isPresent()) {
+	        return ResponseEntity.status(404).body("Giỏ hàng của người dùng không tồn tại.");
+	    }
+	    ShoppingCart shoppingCart = cartOptional.get();
+
+	    // Kiểm tra xem sản phẩm có trong giỏ hàng không
+	    Optional<ShoppingCartItem> itemOptional = shoppingCartItemRepository.findByShoppingCartAndProduct(shoppingCart, new Product(productId));
+	    if (!itemOptional.isPresent()) {
+	        return ResponseEntity.status(404).body("Sản phẩm không có trong giỏ hàng.");
+	    }
+
+	    // Tăng số lượng sản phẩm
+	    ShoppingCartItem item = itemOptional.get();
+	    item.setQuantity(item.getQuantity() + 1);
+	    shoppingCartItemRepository.save(item);
+
+	    // Cập nhật tổng giá giỏ hàng
+	    double totalPrice = shoppingCart.getItems().stream()
+	        .mapToDouble(cartItem -> cartItem.getProduct().getPrice() * cartItem.getQuantity())
+	        .sum();
+	    shoppingCartRepository.save(shoppingCart);
+
+	    return ResponseEntity.ok("Số lượng sản phẩm đã được tăng. Tổng giá giỏ hàng: " + totalPrice);
+	}
+
+	
+	@PutMapping("/decrease")
+	public ResponseEntity<?> decreaseItemQuantity(@RequestParam Integer userId, @RequestParam Integer productId) {
+	    // Tìm giỏ hàng của user
+	    Optional<ShoppingCart> cartOptional = shoppingCartRepository.findByUserId(userId);
+	    if (!cartOptional.isPresent()) {
+	        return ResponseEntity.status(404).body("Giỏ hàng của người dùng không tồn tại.");
+	    }
+	    ShoppingCart shoppingCart = cartOptional.get();
+
+	    // Kiểm tra xem sản phẩm có trong giỏ hàng không
+	    Optional<ShoppingCartItem> itemOptional = shoppingCartItemRepository.findByShoppingCartAndProduct(shoppingCart, new Product(productId));
+	    if (!itemOptional.isPresent()) {
+	        return ResponseEntity.status(404).body("Sản phẩm không có trong giỏ hàng.");
+	    }
+
+	    // Giảm số lượng sản phẩm
+	    ShoppingCartItem item = itemOptional.get();
+	    if (item.getQuantity() > 1) {
+	        item.setQuantity(item.getQuantity() - 1);
+	        shoppingCartItemRepository.save(item);
+	    } else {
+	        return ResponseEntity.ok("Số lượng sản phẩm là 1, không thể giảm nữa.");
+	    }
+
+	    // Cập nhật tổng giá giỏ hàng
+	    double totalPrice = shoppingCart.getItems().stream()
+	        .mapToDouble(cartItem -> cartItem.getProduct().getPrice() * cartItem.getQuantity())
+	        .sum();
+	    shoppingCartRepository.save(shoppingCart);
+
+	    return ResponseEntity.ok("Số lượng sản phẩm đã được giảm. Tổng giá giỏ hàng: " + totalPrice);
+	}
+
+}

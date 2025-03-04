@@ -1,5 +1,0 @@
-package com.fullstack.mystore.dto;
-
-public class ShoppingCartItemDto {
-
-}

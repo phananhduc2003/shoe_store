@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules"; // Sửa import
 import "swiper/css";
@@ -166,9 +166,6 @@ function Home() {
         </Box>
         <Box my={18} mx={3}>
           <ShowItemShoe dataApi={purposeRunning} />
-        </Box>
-        <Box sx={{ width: "100%", my: 2 }}>
-          <Divider sx={{ borderColor: "#e0e0e0", borderWidth: 1 }} />
         </Box>
       </Box>
     </>

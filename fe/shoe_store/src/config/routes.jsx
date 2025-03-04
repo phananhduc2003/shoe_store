@@ -4,6 +4,7 @@ const routes = {
   productDetail: "/productDetail/:id",
   login: "/login",
   cart: "/cart/:idUser",
+  checkout: "/checkout",
 
   homeAdmin: "/homeAdmin",
 };
