@@ -47,4 +47,5 @@
     <fullyQualifiedTypeName name="com.fullstack.mystore.entity.ShoppingCart"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.entity.Product"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
 </qualifiedTypeNameHistroy>

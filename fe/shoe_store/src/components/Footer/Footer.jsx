@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Divider, Grid, Stack, Typography } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import CopyrightIcon from "@mui/icons-material/Copyright";
 
@@ -15,6 +15,9 @@ function Footer() {
         }}
       >
         <Box sx={{ width: "100%", mb: 5 }}>
+          <Box sx={{ width: "100%", my: 2 }}>
+            <Divider sx={{ borderColor: "#e0e0e0", borderWidth: 1 }} />
+          </Box>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} md={3}>
               <Stack spacing={2}>

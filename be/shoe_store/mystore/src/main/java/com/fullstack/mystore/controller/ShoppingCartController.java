@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +50,7 @@ public class ShoppingCartController {
             return ResponseEntity.status(404).body("Giỏ hàng không tồn tại.");
         }
 
-        ShoppingCart shoppingCart = cartOptional.orElseThrow();  // ✅ Giải bọc Optional
+        ShoppingCart shoppingCart = cartOptional.orElseThrow(); 
         List<ShoppingCartItem> items = shoppingCart.getItems();
 
         if (items.isEmpty()) {
@@ -184,5 +185,7 @@ public class ShoppingCartController {
 
 	    return ResponseEntity.ok("Số lượng sản phẩm đã được giảm. Tổng giá giỏ hàng: " + totalPrice);
 	}
+	
+//	@DeleteMapping("/deleteItem/{userId}/{}")
 
 }
