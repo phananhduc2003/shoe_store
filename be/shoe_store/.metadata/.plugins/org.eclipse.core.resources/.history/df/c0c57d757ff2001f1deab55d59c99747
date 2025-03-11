@@ -1,5 +1,0 @@
-package com.fullstack.mystore.enums;
-
-public class OrderStatus {
-
-}

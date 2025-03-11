@@ -4,9 +4,9 @@ const routes = {
   productDetail: "/productDetail/:id",
   login: "/login",
   cart: "/cart/:idUser",
-  checkout: "/checkout",
-
-  homeAdmin: "/homeAdmin",
+  checkout: "/checkout/:idUser",
+  successCheckOut: "/successCheckOut",
+  homeAdmin: "/homeAdmin/",
 };
 
 export default routes;

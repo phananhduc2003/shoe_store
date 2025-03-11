@@ -185,6 +185,21 @@ public class ShoppingCartController {
 
 	    return ResponseEntity.ok("Số lượng sản phẩm đã được giảm. Tổng giá giỏ hàng: " + totalPrice);
 	}
+	@PutMapping("/emptyCart/{userId}")
+	public ResponseEntity<?> emptyCart(@PathVariable Integer userId) {
+	    // Lấy giỏ hàng của người dùng
+	    Optional<ShoppingCart> cartOptional = shoppingCartRepository.findByUserId(userId);
+	    if (!cartOptional.isPresent()) {
+	        return ResponseEntity.status(404).body("Giỏ hàng không tồn tại.");
+	    }
+	    
+	    ShoppingCart shoppingCart = cartOptional.get();
+	    shoppingCart.getItems().clear();  // Làm trống giỏ hàng
+	    
+	    shoppingCartRepository.save(shoppingCart);  // Lưu giỏ hàng sau khi đã xóa các mục
+	    
+	    return ResponseEntity.ok(new Object[] {});  // Trả về mảng rỗng
+	}
 	
 //	@DeleteMapping("/deleteItem/{userId}/{}")
 

@@ -13,19 +13,106 @@ import {
 import PaymentIcon from "@mui/icons-material/Payment";
 import CurrencyRubleIcon from "@mui/icons-material/CurrencyRuble";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ApiCartUser } from "../../apiService/ApiCartUser";
+import { ApiTotalItem } from "../../apiService/ApiTotalItem";
+import { useParams } from "react-router-dom";
+import { CheckOutApi } from "../../apiService/CheckoutApi";
+import { EmptyCartApi } from "../../apiService/EmptyCartApi";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
+  const { idUser } = useParams();
+
+  const navigate = useNavigate();
+
   const [paymentMethod, setPaymentMethod] = useState("card");
+
+  const [DataCartUsers, setDataCartUser] = useState([]);
+  const [totalItems, setTotalItem] = useState();
+
+  useEffect(() => {
+    retrieveProduct();
+    retrieveTotalItem();
+  }, []);
+
+  const retrieveProduct = () => {
+    ApiCartUser(idUser)
+      .then((response) => {
+        setDataCartUser(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // useEffect(() => retrieveTotalItem(), []);
+  const retrieveTotalItem = () => {
+    ApiTotalItem(idUser)
+      .then((response) => {
+        setTotalItem(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Kiểm tra giỏ hàng có sản phẩm không
+    if (DataCartUsers.length === 0) {
+      alert("Giỏ hàng của bạn đang trống!");
+      return;
+    }
+
+    const items = DataCartUsers.map((product) => ({
+      productId: product.product.id, // ID sản phẩm
+      quantity: product.quantity, // Số lượng sản phẩm
+      price: product.product.price, // Giá sản phẩm (có thể cần nếu muốn tính lại tổng)
+    }));
+
+    const formData = {
+      name: e.target.name.value,
+      address: e.target.address.value,
+      email: e.target.email.value,
+      phoneNumber: e.target.phoneNumber.value,
+      paymentMethod: paymentMethod,
+      nameOnCard: paymentMethod === "card" ? e.target.nameOnCard.value : null,
+      cardNumber: paymentMethod === "card" ? e.target.cardNumber.value : null,
+      expiryDate: paymentMethod === "card" ? e.target.expiryDate.value : null,
+      cvv: paymentMethod === "card" ? e.target.cvv.value : null,
+      subtotal: totalItems,
+      shipping: "Free",
+      total: totalItems,
+      items: items, // sửa từ "item" thành "items"
+    };
+
+    // Gọi API checkout
+    CheckOutApi(idUser, formData)
+      .then((response) => {
+        console.log("Checkout successful", response);
+        // Sau khi checkout thành công, gọi API để làm trống giỏ hàng
+        EmptyCartApi(idUser)
+          .then((response) => {
+            setDataCartUser([]);
+            setTotalItem(0);
+            console.log("Empty cart successful", response);
+            navigate("/successCheckOut");
+          })
+          .catch((error) => {
+            console.error("Error emptying cart", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Checkout error", error);
+      });
+  };
 
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
         <Box
           component="form"
-          // onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           method="POST"
-          // noValidate
+          noValidate
           sx={{
             width: "800px",
           }}
@@ -44,25 +131,14 @@ function Checkout() {
                   required
                   fullWidth
                   type="text"
-                  id="firstName"
-                  label="First Name"
-                  name="firstName"
+                  id="name"
+                  label=" Name"
+                  name="name"
                   sx={{
                     mb: 3,
                   }}
                 />
-                <TextField
-                  // onChange={handlePassword}
-                  required
-                  fullWidth
-                  type="text"
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  sx={{
-                    mb: 3,
-                  }}
-                />
+
                 <TextField
                   // onChange={handlePassword}
                   required
@@ -270,7 +346,7 @@ function Checkout() {
                       backgroundColor: "primary.main",
                     }}
                   >
-                    Sign in
+                    Place Order
                   </Button>
                 </Grid>
               </Box>
@@ -290,7 +366,7 @@ function Checkout() {
                   Subtotal
                 </Typography>
                 <Typography sx={{ fontWeight: 400, fontSize: "16px" }}>
-                  15236₫
+                  {totalItems}₫
                 </Typography>
               </Box>
               <Box
@@ -321,27 +397,12 @@ function Checkout() {
                   Total
                 </Typography>
                 <Typography sx={{ fontWeight: 500, fontSize: "16px" }}>
-                  123₫
+                  {totalItems}₫
                 </Typography>
               </Box>
 
               <Box>
-                {[
-                  {
-                    img: "https://secure-images.nike.com/is/image/DotCom/DH3158_100?v=cc74bdb5c6c48cd097ec1b2bced80ba4",
-                    name: "Nike Court Vision Low Next Nature Women's Shoes",
-                    qty: 1,
-                    size: "EU 39",
-                    price: "1,909,000₫",
-                  },
-                  {
-                    img: "https://secure-images.nike.com/is/image/DotCom/DH3158_100?v=cc74bdb5c6c48cd097ec1b2bced80ba4",
-                    name: "Nike Pegasus 41 Women's Road Running Shoes",
-                    qty: 1,
-                    size: "EU 39",
-                    price: "3,829,000₫",
-                  },
-                ].map((item, index) => (
+                {DataCartUsers.map((DataCartUser, index) => (
                   <Card
                     key={index}
                     sx={{
@@ -356,11 +417,11 @@ function Checkout() {
                     }}
                   >
                     <img
-                      src={item.img}
-                      alt={item.name}
+                      src={DataCartUser.product.image}
+                      alt={DataCartUser.product.name}
                       style={{
-                        width: 80,
-                        height: 80,
+                        width: 90,
+                        height: "auto",
                         objectFit: "cover",
                         borderRadius: 5,
                         marginRight: 15,
@@ -368,18 +429,16 @@ function Checkout() {
                     />
                     <Box sx={{ flex: 1 }}>
                       <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                        {item.name}
+                        {DataCartUser.product.name}
                       </Typography>
                       <Typography sx={{ fontSize: "12px", color: "gray" }}>
-                        Qty {item.qty}
+                        Qty {DataCartUser.quantity}
                       </Typography>
-                      <Typography sx={{ fontSize: "12px", color: "gray" }}>
-                        Size {item.size}
-                      </Typography>
+
                       <Typography
                         sx={{ fontSize: "14px", fontWeight: 500, mt: 1 }}
                       >
-                        {item.price}
+                        {DataCartUser.product.price}
                       </Typography>
                     </Box>
                   </Card>

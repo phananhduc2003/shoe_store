@@ -2,6 +2,7 @@ package com.fullstack.mystore.entity;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.fullstack.mystore.enums.OrderStatus;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 
@@ -29,16 +31,23 @@ public class ShopOrder {
 	private OrderStatus statusOrder;
 
     private String addressShipping;
-    
     private String paymentMethod;
     private String paymentStatus;
+    private String shippingStatus;
     
-    @ManyToOne
+   
+
+	@ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+	
+	@OneToMany(mappedBy = "shopOrder")
+	private List<OrderItem> orderItems;
     
     @OneToOne(mappedBy = "shopOrder")
     private ShoppingCart shoppingCart;
+    
+    
 
 	public Integer getId() {
 		return id;
@@ -113,5 +122,11 @@ public class ShopOrder {
 		this.shoppingCart = shoppingCart;
 	}
     
-    
+	 public String getShippingStatus() {
+		return shippingStatus;
+	}
+
+	public void setShippingStatus(String shippingStatus) {
+		this.shippingStatus = shippingStatus;
+	}
 }

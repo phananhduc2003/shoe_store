@@ -21,7 +21,9 @@ public class Payment {
 	private LocalDateTime datePayment;
 
 	private String methodPayment;
+	private String paymentStatus;
 	
+
 	@ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -36,6 +38,13 @@ public class Payment {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
 
 	public LocalDateTime getDatePayment() {
@@ -68,6 +77,11 @@ public class Payment {
 
 	public void setShoppingCart(ShoppingCart shoppingCart) {
 		this.shoppingCart = shoppingCart;
+	}
+
+	public void setShopOrder(ShopOrder shopOrder) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
