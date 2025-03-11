@@ -16,9 +16,10 @@ import jakarta.persistence.Table;
 @Table(name = "app_user")
 public class User {
 	
-	protected User() {
+	public User() {
 		
 	}
+	
 	
 	public User(Integer userId) {
 		// TODO Auto-generated constructor stub
@@ -32,10 +33,10 @@ public class User {
 	
 	@Column(unique = true, nullable = false)
 	private String email;
-	
+
 	private String address;
 	@Column(length = 10)
-	private Integer phone;
+	private String phone;
 	private String username;
 	private String password;
 	private Integer role;
@@ -84,12 +85,12 @@ public class User {
 		this.address = address;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
-		this.phone = phone;
+	public void setPhone(String string) {
+		this.phone = string;
 	}
 
 	public String getUsername() {

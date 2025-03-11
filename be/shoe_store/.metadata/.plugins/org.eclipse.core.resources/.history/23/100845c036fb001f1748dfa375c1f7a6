@@ -1,0 +1,112 @@
+package com.fullstack.mystore.controller;
+
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.dto.CheckoutRequest;
+import com.fullstack.mystore.dto.itemOrderDTO;
+import com.fullstack.mystore.entity.OrderItem;
+import com.fullstack.mystore.entity.Payment;
+import com.fullstack.mystore.entity.Product;
+import com.fullstack.mystore.entity.ShopOrder;
+import com.fullstack.mystore.entity.User;
+import com.fullstack.mystore.enums.OrderStatus;
+import com.fullstack.mystore.repository.OrderItemRepository;
+import com.fullstack.mystore.repository.PaymentRepository;
+import com.fullstack.mystore.repository.ProductRepository;
+import com.fullstack.mystore.repository.ShopOrderRepository;
+import com.fullstack.mystore.repository.UserRepository;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+@RequestMapping("/checkout")
+public class CheckoutController {
+	@Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ShopOrderRepository shopOrderRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+    
+    
+    public CheckoutController(UserRepository userRepository, ShopOrderRepository shopOrderRepository,
+			ProductRepository productRepository, OrderItemRepository orderItemRepository,
+			PaymentRepository paymentRepository) {
+		super();
+		this.userRepository = userRepository;
+		this.shopOrderRepository = shopOrderRepository;
+		this.productRepository = productRepository;
+		this.orderItemRepository = orderItemRepository;
+		this.paymentRepository = paymentRepository;
+	}
+
+
+	@PostMapping
+    public ResponseEntity<String> checkout(@RequestBody CheckoutRequest checkoutRequest) {
+        // 1. Lưu thông tin người dùng
+        User user = new User();
+        user.setName(checkoutRequest.getFirstName());
+        user.setAddress(checkoutRequest.getAddress());
+        user.setEmail(checkoutRequest.getEmail());
+        user.setPhone(checkoutRequest.getPhoneNumber());
+        userRepository.save(user);
+
+        // 2. Tạo đơn hàng
+        ShopOrder shopOrder = new ShopOrder();
+        shopOrder.setDateOrder(LocalDateTime.now());
+        shopOrder.setTotalPrice(checkoutRequest.getTotal()); // Tổng tiền
+        shopOrder.setStatusOrder(OrderStatus.PENDING); // Trạng thái ban đầu là PENDING
+        shopOrder.setShippingStatus("Not Shipped"); // Đặt mặc định là chưa giao
+        shopOrder.setPaymentMethod(checkoutRequest.getPaymentMethod());
+        shopOrder.setPaymentStatus("Pending");
+        shopOrder.setUser(user);
+        shopOrderRepository.save(shopOrder);
+
+        // 3. Lưu các sản phẩm trong giỏ hàng vào OrderItem và tính toán tổng tiền
+        double totalPrice = 0;
+        for (itemOrderDTO itemOrderDTO : checkoutRequest.getItems()) {
+            Product product = productRepository.findById(itemOrderDTO.getProductId()).orElse(null);
+            if (product != null) {
+                // Tạo đối tượng OrderItem và lưu vào database
+                OrderItem orderItem = new OrderItem();
+                orderItem.setProduct(product);
+                orderItem.setQuantity(itemOrderDTO.getQuantity());
+                orderItem.setPrice(product.getPrice());
+                orderItem.setShopOrder(shopOrder);
+                orderItemRepository.save(orderItem);
+
+                totalPrice += product.getPrice() * itemOrderDTO.getQuantity(); // Tính tổng tiền
+            }
+        }
+
+        // 4. Cập nhật tổng giá trị đơn hàng trong ShopOrder
+        shopOrder.setTotalPrice(totalPrice);
+        shopOrderRepository.save(shopOrder);
+
+        // 5. Lưu thông tin thanh toán
+        Payment payment = new Payment();
+        payment.setDatePayment(LocalDateTime.now());
+        payment.setMethodPayment(checkoutRequest.getPaymentMethod());
+        payment.setPaymentStatus("Pending");
+        payment.setUser(user);
+        payment.setShopOrder(shopOrder);
+        paymentRepository.save(payment);
+
+        // 6. Trả về thông báo thành công
+        return ResponseEntity.ok("Order placed successfully.");
+    }
+}

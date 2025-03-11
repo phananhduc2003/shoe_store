@@ -92,10 +92,18 @@ INSERT INTO app_user (id, name, address, phone, username, password, role, email)
 (5, 'Bob Brown', '321 Elm St, Hamletville', 0444555666, 'bobb', '123', 0, 'bobb@example.com');
 
 
-INSERT INTO SHOP_ORDER (ID, TOTAL_PRICE, USER_ID, DATE_ORDER, ADDRESS_SHIPPING, STATUS_ORDER, PAYMENT_METHOD, PAYMENT_STATUS) 
+-- Chèn các đơn hàng vào bảng SHOP_ORDER mà không cần chỉ định ID (giả sử userId = 2 đã tồn tại)
+INSERT INTO SHOP_ORDER (TOTAL_PRICE, USER_ID, DATE_ORDER, ADDRESS_SHIPPING, STATUS_ORDER, PAYMENT_METHOD, PAYMENT_STATUS, SHIPPING_STATUS)
 VALUES 
-(1, 2500000, 2, '2025-02-20 10:00:00', '123 Main St, Cityville', 'PENDING', 'Credit Card', 'Pending'),
-(2, 3000000, 3, '2025-02-20 11:00:00', '456 Oak Ave, Townsville', 'DELIVERED', 'Cash on Delivery', 'Paid');
+(2500000, 2, '2025-02-20 10:00:00', '123 Main St, Cityville', 'PENDING', 'Credit Card', 'Pending', 'Not Shipped'),
+(3000000, 2, '2025-02-20 11:00:00', '456 Oak Ave, Townsville', 'DELIVERED', 'Cash on Delivery', 'Paid', 'Delivered');
+
+-- Chèn các sản phẩm vào bảng ORDER_ITEM (giả sử SHOP_ORDER_ID = 1 và SHOP_ORDER_ID = 2 đã tồn tại)
+INSERT INTO ORDER_ITEM (SHOP_ORDER_ID, PRODUCT_ID, QUANTITY, PRICE)
+VALUES 
+(1, 1, 2, 1000000),  
+(1, 2, 1, 1200000),  
+(2, 3, 1, 1800000);
 
 
 INSERT INTO SHOPPING_CART (ID, SHOP_ORDER_ID, USER_ID, TRANSACTION_ID_MERCHANT, TRANSACTION_ID_USER) VALUES
@@ -103,8 +111,8 @@ INSERT INTO SHOPPING_CART (ID, SHOP_ORDER_ID, USER_ID, TRANSACTION_ID_MERCHANT, 
 (2, 2, 3, 'merchant456-transaction', 'user456-transaction');
 
 INSERT INTO SHOPPING_CART_ITEM ( PRODUCT_ID, QUANTITY, SHOPPING_CART_ID) VALUES
-( 1, 2, 1),  -- 2 Nike Casual Sneakers for user 2
-( 2, 1, 1),  -- 1 Adidas Running Shoes for user 2
-( 3, 1, 2),  -- 1 Puma Formal Shoes for user 3
-( 4, 3, 2);  -- 3 Converse Sports Shoes for user 3
+( 1, 2, 1),  
+( 2, 1, 1),  
+( 3, 1, 2),  
+( 4, 3, 2);  
 
