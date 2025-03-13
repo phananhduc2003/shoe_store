@@ -173,6 +173,7 @@ function Header() {
                   sx: {
                     backgroundColor: (theme) =>
                       theme.palette.background.default,
+                    ...(anchorElExplore && { inert: true }),
                   },
                 }}
               >
@@ -232,6 +233,7 @@ function Header() {
                   sx: {
                     backgroundColor: (theme) =>
                       theme.palette.background.default,
+                    ...(anchorElExplore && { inert: true }),
                   },
                 }}
               >
