@@ -1,22 +1,19 @@
-import {
-  Alert,
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Grid,
-  Slide,
-  Snackbar,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import bg from "../assets/images/signin.svg";
 
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useState } from "react";
+import Snackbar from "@mui/material/Snackbar";
+import Stack from "@mui/material/Stack";
+import Slide from "@mui/material/Slide";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import Alert from "@mui/material/Alert";
 
 const boxStyle = {
   position: "absolute",
@@ -29,13 +26,14 @@ const boxStyle = {
   boxShadow: 24,
 };
 
-function Login() {
+function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-  const authContext = useAuth();
+  // const authContext = useAuth();
   const vertical = "top";
   const horizontal = "right";
 
@@ -51,20 +49,20 @@ function Login() {
     setOpen(false); // Đóng Snackbar khi người dùng nhập lại
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const role = authContext.Login(username, password); // Lấy role sau khi đăng nhập
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const role = authContext.Login(username, password); // Lấy role sau khi đăng nhập
 
-    if (role !== null) {
-      if (role === 1) {
-        navigate(`/homeAdmin`);
-      } else {
-        navigate(`/`);
-      }
-    } else {
-      setOpen(true);
-    }
-  };
+  //   if (role !== null) {
+  //     if (role === 1) {
+  //       navigate(`/homeAdmin`);
+  //     } else {
+  //       navigate(`/`);
+  //     }
+  //   } else {
+  //     setOpen(true);
+  //   }
+  // };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -136,12 +134,12 @@ function Login() {
                     variant="h4"
                     sx={{ color: "#ffffff" }}
                   >
-                    Sign In
+                    Register
                   </Typography>
                 </Box>
                 <Box
                   component="form"
-                  onSubmit={handleSubmit}
+                  // onSubmit={handleSubmit}
                   method="POST"
                   noValidate
                   sx={{ mt: 2 }}
@@ -155,6 +153,38 @@ function Login() {
                         id="Username"
                         label="Username"
                         name="Username"
+                        InputProps={{
+                          style: { color: "#ffffff" },
+                        }}
+                        InputLabelProps={{
+                          style: { color: "#ffffff" },
+                        }}
+                        sx={{
+                          "& .MuiOutlinedInput-root": {
+                            "& fieldset": {
+                              borderColor: "#ffffff",
+                            },
+                            "&:hover fieldset": {
+                              borderColor: "#ffffff",
+                            },
+                            "&.Mui-focused fieldset": {
+                              borderColor: "#ffffff",
+                            },
+                          },
+                          "& .MuiInputLabel-root.Mui-focused": {
+                            color: "#ffffff",
+                          },
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sx={{ ml: "3em", mr: "3em" }}>
+                      <TextField
+                        onChange={handleUsername}
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        name="email"
                         InputProps={{
                           style: { color: "#ffffff" },
                         }}
@@ -227,7 +257,7 @@ function Login() {
                           backgroundColor: "#FF9A01",
                         }}
                       >
-                        Sign in
+                        Register
                       </Button>
                     </Grid>
                     <Grid item xs={12} sx={{ ml: "3em", mr: "3em" }}>
@@ -237,20 +267,21 @@ function Login() {
                           component="span"
                           style={{ marginTop: "10px", color: "#ffffff" }}
                         >
-                          Not registered yet?{" "}
+                          Already have an Account?{" "}
                           <span
                             style={{ color: "#beb4fb", cursor: "pointer" }}
                             onClick={() => {
-                              navigate("/register");
+                              navigate("/login");
                             }}
                           >
-                            Create an Account
+                            Sign in
                           </span>
                         </Typography>
                       </Stack>
                     </Grid>
                   </Grid>
                 </Box>
+                \
               </Container>
             </Box>
           </Grid>
@@ -260,4 +291,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

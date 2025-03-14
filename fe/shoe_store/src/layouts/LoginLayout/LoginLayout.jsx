@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
 
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 function LoginLayout({ children }) {
   return (
     <>
-      <Typography variant="subtitle">LoginLayout</Typography>
       <Box>{children}</Box>
     </>
   );

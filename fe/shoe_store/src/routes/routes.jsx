@@ -12,12 +12,15 @@ import AdminLayout from "../layouts/AdminLayout/AdminLayout";
 import Checkout from "../pages/CheckOut/CheckOut";
 import SuccessCheckOut from "../pages/SuccessCheckOut/SuccessCheckOut";
 import SuccessCheckoutLayout from "../layouts/SuccessCheckoutLayout";
+import Register from "../Register/Register";
 
 const defaultRoutes = [
   { path: config.routes.home, component: Home },
   { path: config.routes.product, component: Product, layout: ProductLayout },
   { path: config.routes.productDetail, component: ProductDetail },
   { path: config.routes.login, component: Login, layout: LoginLayout },
+  { path: config.routes.register, component: Register, layout: LoginLayout },
+
   {
     path: config.routes.successCheckOut,
     component: SuccessCheckOut,
