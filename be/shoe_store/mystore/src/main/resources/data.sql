@@ -84,12 +84,13 @@ VALUES
 
 
 
-INSERT INTO app_user (id, name, address, phone, username, password, role, email) VALUES
-(1, 'Admin', 'Ha Noi', 0338288176, 'Duc', '123456', 1, 'admin@example.com'),
-(2, 'John Doe', '123 Main St, Cityville', 0123456789, 'duc', '123', 0, 'johndoe@example.com'),
-(3, 'Jane Smith', '456 Oak Ave, Townsville', 0987654321, 'janesmith', '123', 0, 'janesmith@example.com'),
-(4, 'Alice Johnson', '789 Pine Rd, Villagetown', 0111222333, 'alicej', '123', 0, 'alicej@example.com'),
-(5, 'Bob Brown', '321 Elm St, Hamletville', 0444555666, 'bobb', '123', 0, 'bobb@example.com');
+INSERT INTO app_user (name, address, phone, username, password, role, email) VALUES
+('Admin', 'Ha Noi', 0338288176, 'Duc', '123456', 1, 'admin@example.com'),
+('John Doe', '123 Main St, Cityville', 0123456789, 'duc', '123', 0, 'johndoe@example.com'),
+('Jane Smith', '456 Oak Ave, Townsville', 0987654321, 'janesmith', '123', 0, 'janesmith@example.com'),
+('Alice Johnson', '789 Pine Rd, Villagetown', 0111222333, 'alicej', '123', 0, 'alicej@example.com'),
+('Bob Brown', '321 Elm St, Hamletville', 0444555666, 'bobb', '123', 0, 'bobb@example.com');
+
 
 
 -- Chèn các đơn hàng vào bảng SHOP_ORDER mà không cần chỉ định ID (giả sử userId = 2 đã tồn tại)
@@ -106,9 +107,10 @@ VALUES
 (2, 3, 1, 1800000);
 
 
-INSERT INTO SHOPPING_CART (ID, SHOP_ORDER_ID, USER_ID, TRANSACTION_ID_MERCHANT, TRANSACTION_ID_USER) VALUES
-(1, 1, 2, 'merchant123-transaction', 'user123-transaction'),
-(2, 2, 3, 'merchant456-transaction', 'user456-transaction');
+INSERT INTO SHOPPING_CART (SHOP_ORDER_ID, USER_ID, TRANSACTION_ID_MERCHANT, TRANSACTION_ID_USER)
+VALUES
+(1, 2, 'merchant123-transaction', 'user123-transaction'),
+(2, 3, 'merchant456-transaction', 'user456-transaction');
 
 INSERT INTO SHOPPING_CART_ITEM ( PRODUCT_ID, QUANTITY, SHOPPING_CART_ID) VALUES
 ( 1, 2, 1),  

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -26,16 +27,18 @@ public class User {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+	@Column(nullable = true)
 	private String name;
 	
 	@Column(unique = true, nullable = false)
 	private String email;
-
+	
+	@Column(nullable = true)
 	private String address;
-	@Column(length = 10)
+	
+	@Column(length = 10, nullable = true)
 	private String phone;
 	private String username;
 	private String password;
@@ -97,7 +100,7 @@ public class User {
 		return username;
 	}
 
-	public void setUsename(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 

@@ -14,6 +14,8 @@ import Stack from "@mui/material/Stack";
 import Slide from "@mui/material/Slide";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
+import { ApiRegister } from "../apiService/ApiRegister";
+import { ApiListUsers } from "../apiService/ApiListUsers";
 
 const boxStyle = {
   position: "absolute",
@@ -27,12 +29,15 @@ const boxStyle = {
 };
 
 function Register() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [checkUserNames, setCheckUserNames] = useState([]);
+  const [messageError, setMessageError] = useState("");
+  const [messageSuccess, setMessageSuccess] = useState("");
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState(false);
 
-  const navigate = useNavigate();
   // const authContext = useAuth();
   const vertical = "top";
   const horizontal = "right";
@@ -49,20 +54,46 @@ function Register() {
     setOpen(false); // Đóng Snackbar khi người dùng nhập lại
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const role = authContext.Login(username, password); // Lấy role sau khi đăng nhập
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setOpen(false); // Đóng Snackbar khi người dùng nhập lại
+  };
 
-  //   if (role !== null) {
-  //     if (role === 1) {
-  //       navigate(`/homeAdmin`);
-  //     } else {
-  //       navigate(`/`);
-  //     }
-  //   } else {
-  //     setOpen(true);
-  //   }
-  // };
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    const formData = {
+      username: username,
+      password: password,
+      email: email,
+    };
+    console.log(formData);
+
+    try {
+      // Gọi API lấy danh sách người dùng
+      const response = await ApiListUsers();
+      setCheckUserNames(response.data); // Cập nhật danh sách người dùng
+
+      // Kiểm tra xem username đã tồn tại chưa
+      if (response.data.find((user) => user.username === formData.username)) {
+        setMessageError("Username already exists");
+        setMessageSuccess(""); // Reset thông báo thành công
+        setOpen(true); // Mở Snackbar khi có thông báo lỗi
+        return;
+      } else {
+        // Nếu username chưa tồn tại, tiến hành gọi API đăng ký
+        const registerResponse = await ApiRegister(formData);
+        console.log(registerResponse);
+        setMessageSuccess("Registration successful! Go to login page");
+        setMessageError(""); // Reset thông báo lỗi
+        setOpen(true); // Mở Snackbar khi đăng ký thành công
+      }
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+      setMessageError("An error occurred during registration");
+      setMessageSuccess(""); // Reset thông báo thành công
+      setOpen(true); // Mở Snackbar khi có lỗi
+    }
+  };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -84,9 +115,20 @@ function Register() {
         TransitionComponent={TransitionLeft}
         anchorOrigin={{ vertical, horizontal }}
       >
-        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
-          Failed! Enter correct username and password.
-        </Alert>
+        {/* Chỉ hiển thị một thông báo tại một thời điểm */}
+        {messageError ? (
+          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+            {messageError}
+          </Alert>
+        ) : messageSuccess ? (
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            {messageSuccess}
+          </Alert>
+        ) : null}
       </Snackbar>
       <Box sx={boxStyle}>
         <Grid container>
@@ -139,7 +181,7 @@ function Register() {
                 </Box>
                 <Box
                   component="form"
-                  // onSubmit={handleSubmit}
+                  onSubmit={handleRegister}
                   method="POST"
                   noValidate
                   sx={{ mt: 2 }}
@@ -179,7 +221,7 @@ function Register() {
                     </Grid>
                     <Grid item xs={12} sx={{ ml: "3em", mr: "3em" }}>
                       <TextField
-                        onChange={handleUsername}
+                        onChange={handleEmail}
                         required
                         fullWidth
                         id="email"
@@ -215,9 +257,9 @@ function Register() {
                         required
                         fullWidth
                         type="password"
-                        id="Password"
+                        id="password"
                         label="Password"
-                        name="Password"
+                        name="password"
                         InputProps={{
                           style: { color: "#ffffff" },
                         }}
@@ -272,6 +314,7 @@ function Register() {
                             style={{ color: "#beb4fb", cursor: "pointer" }}
                             onClick={() => {
                               navigate("/login");
+                              window.location.reload();
                             }}
                           >
                             Sign in
