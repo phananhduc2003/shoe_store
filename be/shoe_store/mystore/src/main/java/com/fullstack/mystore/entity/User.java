@@ -3,6 +3,7 @@ package com.fullstack.mystore.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -53,6 +54,7 @@ public class User {
     private List<ShopOrder> shopOrders;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
     private List<Payment> payments;
 
 	public Integer getId() {
