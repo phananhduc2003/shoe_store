@@ -29,6 +29,7 @@ public class ShoppingCart {
     
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+	@JsonIgnore
     private User user;
     
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)

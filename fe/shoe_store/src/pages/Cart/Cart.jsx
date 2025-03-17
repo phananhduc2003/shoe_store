@@ -14,6 +14,7 @@ import { ApiTotalItem } from "../../apiService/ApiTotalItem";
 import { ApiIncreaseItemInCart } from "../../apiService/ApiIncreaseItemInCart";
 import { ApiDecreaseItemInCart } from "../../apiService/ApiDecreaseItemInCart";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ApiDeleteItem } from "../../apiService/ApiDeleteItem";
 
 function Cart() {
   const navigate = useNavigate();
@@ -64,7 +65,14 @@ function Cart() {
       .catch((error) => console.log(error));
   };
 
-  const handleDeleteItem = () => {};
+  const handleDeleteItem = (productId) => {
+    ApiDeleteItem(idUser, productId)
+      .then((response) => {
+        retrieveProduct();
+        console.log(response, "success delete item");
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleCheckout = () => {
     navigate(`/checkout/${idUser}`);
@@ -206,13 +214,18 @@ function Cart() {
                       </Box>
                       <Box
                         onClick={() => {
-                          handleDeleteItem();
+                          handleDeleteItem(data.product.id);
+                          console.log(data.product.id);
                         }}
                         sx={{
+                          cursor: "pointer",
                           display: "flex",
                           justifyContent: "flex-end",
                           mb: 3,
                           mr: 2,
+                          ":hover": {
+                            color: "error.main",
+                          },
                         }}
                       >
                         <DeleteIcon />
