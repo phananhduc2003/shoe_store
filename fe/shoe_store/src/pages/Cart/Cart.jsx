@@ -14,6 +14,7 @@ import { ApiTotalItem } from "../../apiService/ApiTotalItem";
 import { ApiIncreaseItemInCart } from "../../apiService/ApiIncreaseItemInCart";
 import { ApiDecreaseItemInCart } from "../../apiService/ApiDecreaseItemInCart";
 import DeleteIcon from "@mui/icons-material/Delete";
+
 import { ApiDeleteItemInCart } from "../../apiService/ApiDeleteItemInCart";
 
 function Cart() {

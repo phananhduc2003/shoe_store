@@ -201,62 +201,6 @@ public class ShoppingCartController {
 	    return ResponseEntity.ok(new Object[] {});  // Trả về mảng rỗng
 	}
 	
-	@DeleteMapping("/deleteItem/{userId}/{productId}")
-<<<<<<< HEAD
- 	public ResponseEntity<?> deleteItem(@PathVariable Integer userId, @PathVariable Integer productId ) {
- 		Optional<ShoppingCart> cartOptional = shoppingCartRepository.findByUserId(userId);
- 	    if (!cartOptional.isPresent()) {
- 	        return ResponseEntity.status(404).body("Giỏ hàng không tồn tại.");
- 	    }
- 	    
- 	    ShoppingCart shoppingCart = cartOptional.get();
- 	    
- 	    // Tìm sản phẩm trong giỏ hàng
- 	    Optional<ShoppingCartItem> itemOptional = shoppingCartItemRepository.findByShoppingCartAndProduct(shoppingCart, new Product(productId));
- 	    if (!itemOptional.isPresent()) {
- 	        return ResponseEntity.status(404).body("Sản phẩm không có trong giỏ hàng.");
- 	    }
- 
- 	    // Xóa sản phẩm khỏi giỏ hàng
- 	    ShoppingCartItem itemToDelete = itemOptional.get();
- 	    shoppingCartItemRepository.delete(itemToDelete);
- 
- 	    // Cập nhật lại tổng giá trị giỏ hàng
- 	    double totalPrice = shoppingCart.getItems().stream()
- 	        .mapToDouble(cartItem -> cartItem.getProduct().getPrice() * cartItem.getQuantity())
- 	        .sum();
- 	    shoppingCartRepository.save(shoppingCart);
- 
- 	    return ResponseEntity.ok("Sản phẩm đã được xóa khỏi giỏ hàng. Tổng giá giỏ hàng: " + totalPrice);
- 	}
-=======
-	public ResponseEntity<?> deleteItem(@PathVariable Integer userId, @PathVariable Integer productId ) {
-		Optional<ShoppingCart> cartOptional = shoppingCartRepository.findByUserId(userId);
-	    if (!cartOptional.isPresent()) {
-	        return ResponseEntity.status(404).body("Giỏ hàng không tồn tại.");
-	    }
-	    
-	    ShoppingCart shoppingCart = cartOptional.get();
-	    
-	    // Tìm sản phẩm trong giỏ hàng
-	    Optional<ShoppingCartItem> itemOptional = shoppingCartItemRepository.findByShoppingCartAndProduct(shoppingCart, new Product(productId));
-	    if (!itemOptional.isPresent()) {
-	        return ResponseEntity.status(404).body("Sản phẩm không có trong giỏ hàng.");
-	    }
-
-	    // Xóa sản phẩm khỏi giỏ hàng
-	    ShoppingCartItem itemToDelete = itemOptional.get();
-	    shoppingCartItemRepository.delete(itemToDelete);
-
-	    // Cập nhật lại tổng giá trị giỏ hàng
-	    double totalPrice = shoppingCart.getItems().stream()
-	        .mapToDouble(cartItem -> cartItem.getProduct().getPrice() * cartItem.getQuantity())
-	        .sum();
-	    shoppingCartRepository.save(shoppingCart);
-
-	    return ResponseEntity.ok("Sản phẩm đã được xóa khỏi giỏ hàng. Tổng giá giỏ hàng: " + totalPrice);
-	}
-	
->>>>>>> c393cbaa9fafe24e599803098b18f42c006ac94f
+//	@DeleteMapping("/deleteItem/{userId}/{}")
 
 }
