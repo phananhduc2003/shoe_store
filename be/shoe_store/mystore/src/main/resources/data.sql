@@ -93,13 +93,13 @@ INSERT INTO app_user (name, address, phone, username, password, role, email) VAL
 
 
 
--- Chèn các đơn hàng vào bảng SHOP_ORDER mà không cần chỉ định ID (giả sử userId = 2 đã tồn tại)
+
 INSERT INTO SHOP_ORDER (TOTAL_PRICE, USER_ID, DATE_ORDER, ADDRESS_SHIPPING, STATUS_ORDER, PAYMENT_METHOD, PAYMENT_STATUS, SHIPPING_STATUS)
 VALUES 
 (2500000, 2, '2025-02-20 10:00:00', '123 Main St, Cityville', 'PENDING', 'Credit Card', 'Pending', 'Not Shipped'),
 (3000000, 2, '2025-02-20 11:00:00', '456 Oak Ave, Townsville', 'DELIVERED', 'Cash on Delivery', 'Paid', 'Delivered');
 
--- Chèn các sản phẩm vào bảng ORDER_ITEM (giả sử SHOP_ORDER_ID = 1 và SHOP_ORDER_ID = 2 đã tồn tại)
+
 INSERT INTO ORDER_ITEM (SHOP_ORDER_ID, PRODUCT_ID, QUANTITY, PRICE)
 VALUES 
 (1, 1, 2, 1000000),  

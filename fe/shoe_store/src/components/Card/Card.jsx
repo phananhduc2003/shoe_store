@@ -8,7 +8,6 @@ function Card({ title, textDescription }) {
         sx={{
           display: "flex",
           flexDirection: "column",
-
           alignItems: "center",
           width: "100%",
           maxWidth: "380px",

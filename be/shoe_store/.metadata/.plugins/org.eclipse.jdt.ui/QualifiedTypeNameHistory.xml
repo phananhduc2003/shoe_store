@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
     <fullyQualifiedTypeName name="jakarta.persistence.UniqueConstraint"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Enumerated"/>
@@ -31,18 +30,14 @@
     <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.parameters.RequestBody"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.repository.UserRepository"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.repository.ProductRepository"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.repository.PaymentRepository"/>
-    <fullyQualifiedTypeName name="com.fullstack.mystore.repository.ShopOrderRepository"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.dto.CheckoutRequest"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.entity.User"/>
-    <fullyQualifiedTypeName name="com.fullstack.mystore.entity.ShopOrder"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.entity.Payment"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.entity.Product"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.enums.OrderStatus"/>
     <fullyQualifiedTypeName name="com.fullstack.mystore.dto.itemOrderDTO"/>
@@ -60,4 +55,9 @@
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="com.fullstack.mystore.repository.ShopOrderRepository"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.fullstack.mystore.entity.ShopOrder"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 </qualifiedTypeNameHistroy>
