@@ -8,6 +8,9 @@ const routes = {
   checkout: "/checkout/:idUser",
   successCheckOut: "/successCheckOut",
   homeAdmin: "/homeAdmin/",
+  listItems: "/homeAdmin/listItems",
+  listOrders: "/homeAdmin/listOrders",
+  listUsers: "/homeAdmin/listUsers",
 };
 
 export default routes;

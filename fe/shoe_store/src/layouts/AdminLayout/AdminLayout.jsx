@@ -1,12 +1,16 @@
 import PropTypes from "prop-types";
 
 import { Box } from "@mui/material";
+import SideBar from "../../components/SideBar";
 
 function AdminLayout({ children }) {
   return (
     <>
-      <Box>
-        <Box>{children}</Box>
+      <Box
+        sx={{ display: "flex", minHeight: "100vh", backgroundColor: "#DCDCDC" }}
+      >
+        <SideBar />
+        <Box sx={{ ml: "260px", width: "100%", mt: 3 }}>{children}</Box>
       </Box>
     </>
   );

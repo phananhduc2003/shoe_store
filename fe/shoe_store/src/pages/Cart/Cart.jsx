@@ -14,7 +14,8 @@ import { ApiTotalItem } from "../../apiService/ApiTotalItem";
 import { ApiIncreaseItemInCart } from "../../apiService/ApiIncreaseItemInCart";
 import { ApiDecreaseItemInCart } from "../../apiService/ApiDecreaseItemInCart";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ApiDeleteItem } from "../../apiService/ApiDeleteItem";
+
+import { ApiDeleteItemInCart } from "../../apiService/ApiDeleteItemInCart";
 
 function Cart() {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ function Cart() {
   };
 
   const handleDeleteItem = (productId) => {
-    ApiDeleteItem(idUser, productId)
+    ApiDeleteItemInCart(idUser, productId)
       .then((response) => {
         retrieveProduct();
         console.log(response, "success delete item");
