@@ -4,11 +4,13 @@ package com.fullstack.mystore.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fullstack.mystore.enums.OrderStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +43,8 @@ public class ShopOrder {
     @JoinColumn(name = "user_id")
     private User user;
 	
-	@OneToMany(mappedBy = "shopOrder")
+	@OneToMany(mappedBy = "shopOrder", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<OrderItem> orderItems;
     
     @OneToOne(mappedBy = "shopOrder")
@@ -129,4 +132,7 @@ public class ShopOrder {
 	public void setShippingStatus(String shippingStatus) {
 		this.shippingStatus = shippingStatus;
 	}
+	public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 }

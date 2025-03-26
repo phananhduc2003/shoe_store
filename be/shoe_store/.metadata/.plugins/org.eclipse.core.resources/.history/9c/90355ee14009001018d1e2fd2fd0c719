@@ -1,0 +1,44 @@
+package com.fullstack.mystore.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.mystore.repository.ProductRepository;
+import com.fullstack.mystore.repository.ShopOrderRepository;
+
+@RestController
+public class RevenueController {
+
+    private  ShopOrderRepository shopOrderRepository;
+    private  ProductRepository productRepository;
+
+    public RevenueController(ShopOrderRepository shopOrderRepository, ProductRepository productRepository) {
+        this.shopOrderRepository = shopOrderRepository;
+        this.productRepository = productRepository;
+    }
+
+    // API để tính doanh thu theo đơn hàng trong khoảng thời gian
+    @GetMapping("/api/revenue-by-orders")
+    public List<RevenueDataDTO> getRevenueByOrders(@RequestParam String startDate, @RequestParam String endDate) {
+        // Tìm tất cả các đơn hàng trong khoảng thời gian startDate - endDate
+        List<ShopOrder> orders = shopOrderRepository.findOrdersByDateRange(startDate, endDate);
+        
+        // Tính toán doanh thu từ các đơn hàng
+        List<RevenueData> revenueDataList = new ArrayList<>();
+        
+        for (ShopOrder order : orders) {
+            double revenue = 0;
+            
+            // Duyệt qua tất cả các sản phẩm trong đơn hàng và tính doanh thu
+            for (OrderItem orderItem : order.getOrderItems()) {
+                revenue += orderItem.getPrice() * orderItem.getQuantity();
+            }
+            
+            // Thêm dữ liệu doanh thu vào danh sách
+            revenueDataList.add(new RevenueData(order.getId(), revenue, order.getDateOrder().toString()));
+        }
+
+        return revenueDataList;
+    }
+
+}
