@@ -97,24 +97,35 @@ INSERT INTO app_user (name, address, phone, username, password, role, email) VAL
 INSERT INTO SHOP_ORDER (TOTAL_PRICE, USER_ID, DATE_ORDER, ADDRESS_SHIPPING, STATUS_ORDER, PAYMENT_METHOD, PAYMENT_STATUS, SHIPPING_STATUS)
 VALUES 
 (2500000, 2, '2025-02-20 10:00:00', '123 Main St, Cityville', 'PENDING', 'Credit Card', 'Pending', 'Not Shipped'),
-(3000000, 2, '2025-02-20 11:00:00', '456 Oak Ave, Townsville', 'DELIVERED', 'Cash on Delivery', 'Paid', 'Delivered');
+(3000000, 2, '2025-02-20 11:00:00', '456 Oak Ave, Townsville', 'DELIVERED', 'Cash on Delivery', 'Paid', 'Delivered'),
+(4000000, 3, '2025-02-21 09:00:00', '456 Oak Ave, Townsville', 'PENDING', 'Credit Card', 'Pending', 'Not Shipped'),
+(5000000, 4, '2025-02-22 12:00:00', '789 Pine Rd, Villagetown', 'DELIVERED', 'Cash on Delivery', 'Paid', 'Delivered');
 
 
 INSERT INTO ORDER_ITEM (SHOP_ORDER_ID, PRODUCT_ID, QUANTITY, PRICE)
 VALUES 
 (1, 1, 2, 1000000),  
 (1, 2, 1, 1200000),  
-(2, 3, 1, 1800000);
+(2, 3, 1, 1800000),
+(3, 1, 2, 1000000),  -- Đơn hàng 3, sản phẩm 1, số lượng 2, giá 1 triệu
+(3, 5, 1, 800000),   -- Đơn hàng 3, sản phẩm 5, số lượng 1, giá 800 nghìn
+(4, 2, 3, 1200000),  -- Đơn hàng 4, sản phẩm 2, số lượng 3, giá 1.2 triệu
+(4, 6, 2, 2000000);  -- Đơn hàng 4, sản phẩm 6, số lượng 2, giá 2 triệu
 
 
 INSERT INTO SHOPPING_CART (SHOP_ORDER_ID, USER_ID, TRANSACTION_ID_MERCHANT, TRANSACTION_ID_USER)
 VALUES
 (1, 2, 'merchant123-transaction', 'user123-transaction'),
-(2, 3, 'merchant456-transaction', 'user456-transaction');
+(2, 3, 'merchant456-transaction', 'user456-transaction'),
+(3, 3, 'merchant123-transaction', 'user123-transaction'),
+(4, 4, 'merchant456-transaction', 'user456-transaction');
 
 INSERT INTO SHOPPING_CART_ITEM ( PRODUCT_ID, QUANTITY, SHOPPING_CART_ID) VALUES
 ( 1, 2, 1),  
 ( 2, 1, 1),  
 ( 3, 1, 2),  
-( 4, 3, 2);  
-
+( 4, 3, 2),
+(1, 2, 3),  -- Giỏ hàng 3, sản phẩm 1, số lượng 2
+(5, 1, 3),  -- Giỏ hàng 3, sản phẩm 5, số lượng 1
+(2, 3, 4),  -- Giỏ hàng 4, sản phẩm 2, số lượng 3
+(6, 2, 4);  -- Giỏ hàng 4, sản phẩm 6, số lượng 2

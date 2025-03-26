@@ -7,7 +7,7 @@ function AdminLayout({ children }) {
   return (
     <>
       <Box
-        sx={{ display: "flex", minHeight: "100vh", backgroundColor: "#DCDCDC" }}
+        sx={{ display: "flex", minHeight: "100vh", backgroundColor: "#DFE5E7" }}
       >
         <SideBar />
         <Box sx={{ ml: "260px", width: "100%", mt: 3 }}>{children}</Box>

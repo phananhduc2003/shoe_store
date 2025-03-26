@@ -16,7 +16,8 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "shop_order_id")
-    private ShopOrder shopOrder;
+    private ShopOrder shopOrder;  // Quan hệ ManyToOne với ShopOrder
+
 
     @ManyToOne
     @JoinColumn(name = "product_id")
