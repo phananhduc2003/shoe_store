@@ -11,6 +11,7 @@ const routes = {
   listItems: "/homeAdmin/listItems",
   listOrders: "/homeAdmin/listOrders",
   listUsers: "/homeAdmin/listUsers",
+  retrieveProduct: "/homeAdmin/retrieveProduct/:id",
 };
 
 export default routes;

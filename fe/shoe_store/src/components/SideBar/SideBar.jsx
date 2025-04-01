@@ -27,7 +27,7 @@ function SideBar() {
                 height: "50px",
                 backgroundImage: `url(${logo})`,
                 backgroundSize: "contain",
-                backgroundColor: "secondary.light",
+                backgroundColor: "secondary.main",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
                 marginLeft: 3,
@@ -41,7 +41,7 @@ function SideBar() {
                 ml: 1,
                 fontWeight: 700,
                 fontSize: "20px",
-                color: "secondary.light",
+                color: "secondary.main",
               }}
             >
               Home ADMIN

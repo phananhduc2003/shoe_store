@@ -16,8 +16,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { ApiListItem } from "../../apiServiceAdmin/ApiListItem";
 
+import { useNavigate } from "react-router-dom";
+import { ApiDeleteProduct } from "../../apiServiceAdmin/ApiDeleteProduct";
+
 function ListItems() {
   const [ListRetrieveItems, setListRetrieveItems] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleRetrieveList();
@@ -32,6 +37,26 @@ function ListItems() {
         console.log(error);
       });
     console.log(ListRetrieveItems);
+  };
+
+  const handleAddProduct = () => {
+    navigate("/homeAdmin/retrieveProduct/-1");
+  };
+
+  const handleEditProduct = (ProductId) => {
+    navigate(`/homeAdmin/retrieveProduct/${ProductId}`);
+  };
+
+  const handleDeleteProduct = (ProductId) => {
+    // Call the API to delete the product with the given ProductId
+    // After deletion, refresh the list of products
+    ApiDeleteProduct(ProductId)
+      .then(() => {
+        handleRetrieveList();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -53,12 +78,13 @@ function ListItems() {
         >
           <Button
             sx={{ mx: 1, fontSize: 10 }}
+            onClick={handleAddProduct}
             variant="contained"
             color="success"
             size="small"
             startIcon={<AddIcon />}
           >
-            Exit
+            Add
           </Button>
 
           <Box
@@ -164,6 +190,7 @@ function ListItems() {
                     <Box sx={{ display: "flex", justifyContent: "center" }}>
                       <Button
                         sx={{ mx: 1, fontSize: 10 }}
+                        onClick={() => handleDeleteProduct(ListRetrieveItem.id)}
                         variant="contained"
                         color="error"
                         size="small"
@@ -173,12 +200,13 @@ function ListItems() {
                       </Button>
                       <Button
                         sx={{ mx: 1, fontSize: 10 }}
+                        onClick={() => handleEditProduct(ListRetrieveItem.id)}
                         variant="contained"
                         color="warning"
                         size="small"
                         startIcon={<EditIcon />}
                       >
-                        Exit
+                        Edit
                       </Button>
                     </Box>
                   </TableCell>
