@@ -11,5 +11,6 @@ import com.fullstack.mystore.entity.ShoppingCartItem;
 
 public interface ShoppingCartItemRepository extends JpaRepository<ShoppingCartItem, Integer> {
 	List<ShoppingCartItem> findByShoppingCart(ShoppingCart shoppingCart);
+	List<ShoppingCartItem> findByProductId(int productId);
 	Optional<ShoppingCartItem> findByShoppingCartAndProduct(ShoppingCart shoppingCart, Product product);
 }

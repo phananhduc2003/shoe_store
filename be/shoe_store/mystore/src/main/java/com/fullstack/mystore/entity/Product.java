@@ -3,6 +3,7 @@ package com.fullstack.mystore.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +27,10 @@ public class Product {
     
     @ManyToOne
     @JoinColumn(name = "PRODUCT_CATEGORY_ID")
-    
     private ProductCategoryBrand productCategoryBrand;
     
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<ProductCategoryBrandPurpose> productCategoryBrandPurposes; 
 
     @OneToMany(mappedBy = "product")
@@ -109,5 +110,9 @@ public class Product {
 
 	public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
 		this.shoppingCartItems = shoppingCartItems;
+	}
+
+	public List<ProductCategoryBrandPurpose> getProductCategoryBrandPurposes() {
+	    return productCategoryBrandPurposes;  // Trả về danh sách các mục đích liên kết với sản phẩm
 	}
 }

@@ -16,6 +16,7 @@ import Register from "../Register/Register";
 import ListItems from "../PageAdmin/ListItems/Listitems";
 import ListOrders from "../PageAdmin/ListOrder/ListOrders";
 import ListUsers from "../PageAdmin/ListUsers/ListUsers";
+import RetrieveProduct from "../PageAdmin/components/RetrieveProduct";
 
 const defaultRoutes = [
   { path: config.routes.home, component: Home },
@@ -57,6 +58,12 @@ const adminRoutes = [
   {
     path: config.routes.listUsers,
     component: ListUsers,
+    layout: AdminLayout,
+    protected: true,
+  },
+  {
+    path: config.routes.retrieveProduct,
+    component: RetrieveProduct,
     layout: AdminLayout,
     protected: true,
   },
