@@ -15,7 +15,6 @@ import { ApiPutProduct } from "../../../apiServiceAdmin/ApiPutProduct";
 import { ApiProductDetailForListItems } from "../../../apiServiceAdmin/ApiProductDetailForListItems";
 
 function RetrieveProduct() {
-  const [DataDetailProduct, setDataDetailProduct] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -33,7 +32,6 @@ function RetrieveProduct() {
     if (id != -1) {
       ApiProductDetailForListItems(id)
         .then((response) => {
-          setDataDetailProduct(response.data);
           setName(response.data.name);
           setDescription(response.data.description);
           setImage(response.data.image);
@@ -97,7 +95,7 @@ function RetrieveProduct() {
             color: "secondary.main",
           }}
         >
-          RetrieveListProduct
+          Retrieve List Product
         </Box>
 
         <Box

@@ -1,8 +1,17 @@
 import { Box, Button, Typography } from "@mui/material";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SuccessCheckOut() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const message = queryParams.get("message") || "Thanh toán thành công.";
+  const navigate = useNavigate();
+
+  const handleNavigateHome = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <Box
@@ -22,14 +31,14 @@ function SuccessCheckOut() {
         >
           <TaskAltIcon sx={{ width: 80, height: 80, mb: 5 }} />
           <Typography sx={{ fontWeight: 500, fontSize: 42 }}>
-            Your payment has been received
+            {message}
           </Typography>
           <Typography>
-            Please check your email for a payment confirmation & invoice.
+            Cảm ơn bạn đã mua hàng tại hệ thống của chúng tôi.
           </Typography>
           <Button
             variant="contained"
-            component={Link}
+            onClick={handleNavigateHome}
             to="/"
             fullWidth
             size="large"
@@ -42,7 +51,7 @@ function SuccessCheckOut() {
               backgroundColor: "primary.main",
             }}
           >
-            Go to Your Home
+            Về trang chủ
           </Button>
         </Box>
       </Box>
