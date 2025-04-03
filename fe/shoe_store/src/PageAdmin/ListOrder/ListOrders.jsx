@@ -14,8 +14,11 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
 import { ApiListOrder } from "../../apiServiceAdmin/ApiListOrder";
+import { useNavigate } from "react-router-dom";
 
 function ListOrders() {
+  const navigate = useNavigate();
+
   const [ListRetrieveOrders, setListRetrieveOrders] = useState([]);
 
   useEffect(() => {
@@ -30,7 +33,10 @@ function ListOrders() {
       .catch((error) => {
         console.log(error);
       });
-    console.log(ListRetrieveOrders);
+  };
+
+  const handleEditOrder = (id) => {
+    navigate(`/homeAdmin/retrieveOrder/${id}`);
   };
 
   return (
@@ -42,6 +48,18 @@ function ListOrders() {
           width: "100%",
         }}
       >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontWeight: "bold",
+            fontSize: "30px",
+            mb: 2,
+            color: "secondary.main",
+          }}
+        >
+          List Orders
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -165,13 +183,14 @@ function ListOrders() {
                         Del
                       </Button>
                       <Button
+                        onClick={() => handleEditOrder(ListRetrieveOrder.id)}
                         sx={{ mx: 1, fontSize: 10 }}
                         variant="contained"
                         color="warning"
                         size="small"
                         startIcon={<EditIcon />}
                       >
-                        Exit
+                        Edit
                       </Button>
                     </Box>
                   </TableCell>

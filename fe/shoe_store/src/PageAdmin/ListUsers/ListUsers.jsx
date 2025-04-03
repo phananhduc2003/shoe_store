@@ -30,7 +30,6 @@ function ListUsers() {
       .catch((error) => {
         console.log(error);
       });
-    console.log(ListRetrieveUsers);
   };
 
   return (
@@ -42,6 +41,18 @@ function ListUsers() {
           width: "100%",
         }}
       >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontWeight: "bold",
+            fontSize: "30px",
+            mb: 2,
+            color: "secondary.main",
+          }}
+        >
+          List Users
+        </Box>
         <Box
           sx={{
             display: "flex",

@@ -36,7 +36,6 @@ function ListItems() {
       .catch((error) => {
         console.log(error);
       });
-    console.log(ListRetrieveItems);
   };
 
   const handleAddProduct = () => {
@@ -68,6 +67,18 @@ function ListItems() {
           width: "100%",
         }}
       >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontWeight: "bold",
+            fontSize: "30px",
+            mb: 2,
+            color: "secondary.main",
+          }}
+        >
+          List Items
+        </Box>
         <Box
           sx={{
             display: "flex",

@@ -20,6 +20,7 @@ import { useParams } from "react-router-dom";
 import { CheckOutApi } from "../../apiService/CheckoutApi";
 import { EmptyCartApi } from "../../apiService/EmptyCartApi";
 import { useNavigate } from "react-router-dom";
+import { ApiVnPay } from "../../apiService/ApiVnPay";
 
 function Checkout() {
   const { idUser } = useParams();
@@ -56,16 +57,15 @@ function Checkout() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Kiểm tra giỏ hàng có sản phẩm không
     if (DataCartUsers.length === 0) {
       alert("Giỏ hàng của bạn đang trống!");
       return;
     }
 
     const items = DataCartUsers.map((product) => ({
-      productId: product.product.id, // ID sản phẩm
-      quantity: product.quantity, // Số lượng sản phẩm
-      price: product.product.price, // Giá sản phẩm (có thể cần nếu muốn tính lại tổng)
+      productId: product.product.id,
+      quantity: product.quantity,
+      price: product.product.price,
     }));
 
     const formData = {
@@ -74,35 +74,58 @@ function Checkout() {
       email: e.target.email.value,
       phoneNumber: e.target.phoneNumber.value,
       paymentMethod: paymentMethod,
-      nameOnCard: paymentMethod === "card" ? e.target.nameOnCard.value : null,
-      cardNumber: paymentMethod === "card" ? e.target.cardNumber.value : null,
-      expiryDate: paymentMethod === "card" ? e.target.expiryDate.value : null,
-      cvv: paymentMethod === "card" ? e.target.cvv.value : null,
       subtotal: totalItems,
       shipping: "Free",
       total: totalItems,
-      items: items, // sửa từ "item" thành "items"
+      items: items,
     };
 
-    // Gọi API checkout
-    CheckOutApi(idUser, formData)
-      .then((response) => {
-        console.log("Checkout successful", response);
-        // Sau khi checkout thành công, gọi API để làm trống giỏ hàng
-        EmptyCartApi(idUser)
-          .then((response) => {
+    if (paymentMethod === "card") {
+      try {
+        const orderInfo = "Thanh toan hoa don";
+
+        // GỌI API tạo đơn hàng & thanh toán trước
+        await CheckOutApi(idUser, formData);
+
+        // Sau đó gọi tạo link thanh toán VNPAY
+        const response = await ApiVnPay(totalItems, orderInfo);
+        const paymentUrl = response.data.paymentUrl;
+
+        // Xoá giỏ hàng (nếu chưa được xoá ở backend)
+        await EmptyCartApi(idUser)
+          .then((res) => {
             setDataCartUser([]);
             setTotalItem(0);
-            console.log("Empty cart successful", response);
-            navigate("/successCheckOut");
+            console.log("Empty cart successful", res);
           })
-          .catch((error) => {
-            console.error("Error emptying cart", error);
+          .catch((err) => {
+            console.error("Lỗi khi xoá giỏ hàng", err);
           });
-      })
-      .catch((error) => {
-        console.error("Checkout error", error);
-      });
+
+        // Redirect sang VNPAY
+        window.location.href = paymentUrl;
+      } catch (error) {
+        console.error("Lỗi xử lý thanh toán qua VNPAY:", error);
+      }
+    } else {
+      CheckOutApi(idUser, formData)
+        .then((response) => {
+          console.log("Checkout successful", response);
+          EmptyCartApi(idUser)
+            .then((response) => {
+              setDataCartUser([]);
+              setTotalItem(0);
+              console.log("Empty cart successful", response);
+              navigate("/successCheckOut");
+            })
+            .catch((error) => {
+              console.error("Error emptying cart", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Checkout error", error);
+        });
+    }
   };
 
   return (
@@ -216,7 +239,7 @@ function Checkout() {
                         value="card"
                         sx={{ ml: 1, color: "text.primary" }}
                         control={<Radio sx={{ display: "none" }} />} // Ẩn Radio Button
-                        label="Credit or Debit Card"
+                        label="Vn Pay"
                       />
                     </Card>
 
@@ -281,56 +304,6 @@ function Checkout() {
                   </RadioGroup>
                 </FormControl>
 
-                {/* Hiển thị form nhập thông tin thẻ nếu chọn Credit/Debit Card */}
-                {paymentMethod === "card" && (
-                  <Box>
-                    <Typography
-                      sx={{ fontWeight: "300", fontSize: "16px", my: 1 }}
-                    >
-                      Enter your payment details:
-                    </Typography>
-                    <TextField
-                      required
-                      fullWidth
-                      type="text"
-                      id="nameOnCard"
-                      label="Name on Card"
-                      name="nameOnCard"
-                      sx={{ mb: 3 }}
-                    />
-                    <TextField
-                      required
-                      fullWidth
-                      type="text"
-                      id="cardNumber"
-                      label="Card Number"
-                      name="cardNumber"
-                      sx={{ mb: 3 }}
-                    />
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                        mb: 5,
-                      }}
-                    >
-                      <TextField
-                        required
-                        type="text"
-                        id="expiryDate"
-                        label="Expiry Date"
-                        name="expiryDate"
-                      />
-                      <TextField
-                        required
-                        type="text"
-                        id="cvv"
-                        label="CVV"
-                        name="cvv"
-                      />
-                    </Box>
-                  </Box>
-                )}
                 <Grid item xs={12} sx={{ ml: "5em", mr: "5em" }}>
                   <Button
                     type="submit"

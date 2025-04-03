@@ -17,6 +17,7 @@ import ListItems from "../PageAdmin/ListItems/Listitems";
 import ListOrders from "../PageAdmin/ListOrder/ListOrders";
 import ListUsers from "../PageAdmin/ListUsers/ListUsers";
 import RetrieveProduct from "../PageAdmin/components/RetrieveProduct";
+import RetrieveOrder from "../PageAdmin/components/RetrieveOrder/RetrieveOrder";
 
 const defaultRoutes = [
   { path: config.routes.home, component: Home },
@@ -64,6 +65,12 @@ const adminRoutes = [
   {
     path: config.routes.retrieveProduct,
     component: RetrieveProduct,
+    layout: AdminLayout,
+    protected: true,
+  },
+  {
+    path: config.routes.retrieveOrder,
+    component: RetrieveOrder,
     layout: AdminLayout,
     protected: true,
   },
