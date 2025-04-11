@@ -53,7 +53,8 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const role = authContext.Login(username, password); // Lấy role sau khi đăng nhập
+
+    const role = await authContext.Login(username, password);
 
     if (role !== null) {
       if (role === 1) {

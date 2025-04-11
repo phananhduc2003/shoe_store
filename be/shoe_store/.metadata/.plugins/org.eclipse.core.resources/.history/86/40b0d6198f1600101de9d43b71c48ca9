@@ -1,0 +1,5 @@
+package com.fullstack.mystore.jwt;
+
+public class UserDetailsServiceImpl {
+
+}

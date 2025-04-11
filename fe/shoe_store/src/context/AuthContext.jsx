@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { ApiListUsers } from "../apiService/ApiListUsers";
+import { ApiLogin } from "../apiService/ApiLogin";
 
 export const AuthContext = createContext();
 
@@ -9,43 +9,46 @@ export const useAuth = () => useContext(AuthContext);
 function AuthProvider({ children }) {
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null); // Lưu role của user
-  const [listUsers, setListUsers] = useState([]);
   const [idUser, setIdUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  // Tự động check sessionStorage để đăng nhập lại nếu còn token
   useEffect(() => {
-    setLoading(true); // Đánh dấu bắt đầu tải dữ liệu
-    ApiListUsers()
-      .then((response) => {
-        setListUsers(response.data);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch users:", error);
-      })
-      .finally(() => {
-        setLoading(false); // Dữ liệu đã tải xong
-      });
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+
+        const role = payload.role === "ADMIN" ? 1 : 0;
+
+        setAuthenticated(true);
+        setUserRole(role);
+        setIdUser(payload.userId);
+      } catch (e) {
+        console.error("Invalid token:", e);
+        sessionStorage.removeItem("token");
+      }
+    }
+    setLoading(false);
   }, []);
 
-  const Login = (username, password) => {
-    if (loading) {
-      console.log("Still loading user data...");
-      return null; // Chặn đăng nhập nếu chưa tải xong
-    }
+  const Login = async (username, password) => {
+    try {
+      const response = await ApiLogin(username, password);
+      const token = response.data.token;
 
-    const user = listUsers.find(
-      (user) => user.username === username && user.password === password
-    );
+      const payload = JSON.parse(atob(token.split(".")[1]));
 
-    if (user) {
+      const role = payload.role === "ADMIN" ? 1 : 0;
+
+      sessionStorage.setItem("token", token);
       setAuthenticated(true);
-      setUserRole(user.role);
-      setIdUser(user.id);
-      return user.role;
-    } else {
-      setAuthenticated(false);
-      setUserRole(null);
-      setIdUser(null);
+      setUserRole(role);
+      setIdUser(payload.userId); // sub là username hoặc id tùy backend
+
+      return role;
+    } catch (error) {
+      console.error("Login failed:", error);
       return null;
     }
   };
@@ -54,6 +57,7 @@ function AuthProvider({ children }) {
     setAuthenticated(false);
     setUserRole(null);
     setIdUser(null);
+    sessionStorage.removeItem("token");
   };
 
   return (

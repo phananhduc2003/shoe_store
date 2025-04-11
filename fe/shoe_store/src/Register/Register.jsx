@@ -69,29 +69,26 @@ function Register() {
     console.log(formData);
 
     try {
-      // Gọi API lấy danh sách người dùng
       const response = await ApiListUsers();
-      setCheckUserNames(response.data); // Cập nhật danh sách người dùng
+      setCheckUserNames(response.data);
 
-      // Kiểm tra xem username đã tồn tại chưa
       if (response.data.find((user) => user.username === formData.username)) {
         setMessageError("Username already exists");
-        setMessageSuccess(""); // Reset thông báo thành công
-        setOpen(true); // Mở Snackbar khi có thông báo lỗi
+        setMessageSuccess("");
+        setOpen(true);
         return;
       } else {
-        // Nếu username chưa tồn tại, tiến hành gọi API đăng ký
         const registerResponse = await ApiRegister(formData);
         console.log(registerResponse);
         setMessageSuccess("Registration successful! Go to login page");
-        setMessageError(""); // Reset thông báo lỗi
-        setOpen(true); // Mở Snackbar khi đăng ký thành công
+        setMessageError("");
+        setOpen(true);
       }
     } catch (error) {
       console.error("Failed to fetch users:", error);
       setMessageError("An error occurred during registration");
-      setMessageSuccess(""); // Reset thông báo thành công
-      setOpen(true); // Mở Snackbar khi có lỗi
+      setMessageSuccess("");
+      setOpen(true);
     }
   };
 
