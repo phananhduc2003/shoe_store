@@ -3422,3 +3422,1142 @@ Caused by: java.lang.IllegalStateException: The Plug-in Development Environment 
 	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
 	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
 	... 25 more
+!SESSION 2025-04-05 10:42:29.413 -----------------------------------------------
+eclipse.buildId=4.31.0.20240307-1200
+java.version=17.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.emf.ecore 2 0 2025-04-05 10:42:31.675
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-05 10:42:31.952
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-05 10:42:34.668
+!MESSAGE Logback config file: D:\JAVA\word_space\shoe_store\be\shoe_store\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.0.20240217-1525.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-04-05 10:42:39.815
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-04-05 10:42:40.480
+!MESSAGE JavaBuilder handling CoreException
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/mystore/target/classes/com/fullstack/mystore/controller/PaymentController.class)[368]: java.lang.Exception: File not found: D:\JAVA\word_space\shoe_store\be\shoe_store\mystore\target\classes\com\fullstack\mystore\controller\PaymentController.class.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:877)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:299)
+	at org.eclipse.jdt.internal.core.util.Util.getResourceContentsAsByteArray(Util.java:1175)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.writeClassFileCheck(IncrementalImageBuilder.java:942)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.writeClassFileContents(IncrementalImageBuilder.java:884)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.writeClassFile(AbstractImageBuilder.java:906)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.acceptResult(AbstractImageBuilder.java:217)
+	at org.eclipse.jdt.internal.compiler.Compiler.processCompiledUnits(Compiler.java:614)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:474)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:425)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:411)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.compile(IncrementalImageBuilder.java:371)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:342)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.incrementalBuildLoop(IncrementalImageBuilder.java:190)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.build(IncrementalImageBuilder.java:147)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildDeltas(JavaBuilder.java:304)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:221)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:352)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:441)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:444)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:555)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:503)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:585)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:207)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:300)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2025-04-05 10:42:40.484
+!MESSAGE File not found: D:\JAVA\word_space\shoe_store\be\shoe_store\mystore\target\classes\com\fullstack\mystore\controller\PaymentController.class.
+!STACK 0
+java.lang.Exception: File not found: D:\JAVA\word_space\shoe_store\be\shoe_store\mystore\target\classes\com\fullstack\mystore\controller\PaymentController.class.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:877)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:299)
+	at org.eclipse.jdt.internal.core.util.Util.getResourceContentsAsByteArray(Util.java:1175)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.writeClassFileCheck(IncrementalImageBuilder.java:942)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.writeClassFileContents(IncrementalImageBuilder.java:884)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.writeClassFile(AbstractImageBuilder.java:906)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.acceptResult(AbstractImageBuilder.java:217)
+	at org.eclipse.jdt.internal.compiler.Compiler.processCompiledUnits(Compiler.java:614)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:474)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:425)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:411)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.compile(IncrementalImageBuilder.java:371)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:342)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.incrementalBuildLoop(IncrementalImageBuilder.java:190)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.build(IncrementalImageBuilder.java:147)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildDeltas(JavaBuilder.java:304)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:221)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:352)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:441)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:444)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:555)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:503)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:585)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:207)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:300)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.pde.core 4 0 2025-04-05 19:07:11.558
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:913)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	... 13 more
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+Root exception:
+java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+!SESSION 2025-04-09 09:56:30.113 -----------------------------------------------
+eclipse.buildId=4.31.0.20240307-1200
+java.version=17.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.emf.ecore 2 0 2025-04-09 09:56:33.334
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-09 09:56:33.618
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-09 09:57:18.768
+!MESSAGE Logback config file: D:\JAVA\word_space\shoe_store\be\shoe_store\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.0.20240217-1525.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-04-09 09:57:24.517
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.pde.core 4 0 2025-04-09 19:40:56.772
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:913)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	... 13 more
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+Root exception:
+java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+!SESSION 2025-04-09 20:23:44.495 -----------------------------------------------
+eclipse.buildId=4.31.0.20240307-1200
+java.version=17.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.emf.ecore 2 0 2025-04-09 20:23:52.638
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-09 20:23:52.943
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-09 21:39:14.464
+!MESSAGE Logback config file: D:\JAVA\word_space\shoe_store\be\shoe_store\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.0.20240217-1525.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-04-09 21:39:20.563
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.pde.core 4 0 2025-04-09 21:39:55.742
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:913)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	... 13 more
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+Root exception:
+java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+!SESSION 2025-04-09 21:39:56.514 -----------------------------------------------
+eclipse.buildId=4.31.0.20240307-1200
+java.version=17.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.emf.ecore 2 0 2025-04-09 21:40:00.359
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-09 21:40:00.604
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-09 21:40:16.484
+!MESSAGE Logback config file: D:\JAVA\word_space\shoe_store\be\shoe_store\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.0.20240217-1525.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-04-09 21:40:21.731
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.pde.core 4 0 2025-04-09 21:40:43.204
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:913)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	... 13 more
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+Root exception:
+java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+!SESSION 2025-04-11 10:22:35.024 -----------------------------------------------
+eclipse.buildId=4.31.0.20240307-1200
+java.version=17.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.emf.ecore 2 0 2025-04-11 10:23:18.605
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-11 10:23:18.857
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-11 10:23:39.955
+!MESSAGE Logback config file: D:\JAVA\word_space\shoe_store\be\shoe_store\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.0.20240217-1525.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-04-11 10:23:47.011
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:43:47.375
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:43:47.376
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:43:47.377
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:43:47.378
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:43:47.382
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:43:47.385
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.pde.core 4 0 2025-04-11 10:46:34.265
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:913)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	... 13 more
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+Root exception:
+java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+!SESSION 2025-04-11 10:47:14.803 -----------------------------------------------
+eclipse.buildId=4.31.0.20240307-1200
+java.version=17.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.emf.ecore 2 0 2025-04-11 10:47:18.623
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-11 10:47:18.866
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-11 10:47:45.520
+!MESSAGE Logback config file: D:\JAVA\word_space\shoe_store\be\shoe_store\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.0.20240217-1525.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-04-11 10:47:52.636
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:48:13.179
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:48:13.179
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:48:13.180
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:48:13.181
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:48:13.186
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 10:48:13.189
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:01:47.219
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:01:47.219
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:01:47.220
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:01:47.220
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:01:47.223
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:01:47.224
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:07:49.728
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:07:49.729
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:07:49.729
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:07:49.729
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:07:49.734
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 11:07:49.735
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:20:34.399
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:20:34.400
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:20:34.400
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:20:34.400
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:20:34.402
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:20:34.403
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:39:53.298
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:39:53.299
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:39:53.299
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:39:53.300
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:39:53.301
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:39:53.303
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:54:17.034
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:54:17.036
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:54:17.036
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:54:17.036
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:54:17.037
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2025-04-11 13:54:17.038
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.lsp4e 2 0 2025-04-11 13:54:26.909
+!MESSAGE Could get code actions due to timeout after 300 milliseconds in `textDocument/codeAction`
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.checkMarkerResolution(LSPCodeActionMarkerResolution.java:154)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.hasResolutions(LSPCodeActionMarkerResolution.java:208)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolution(MarkerHelpRegistry.java:263)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolutions(MarkerHelpRegistry.java:236)
+	at org.eclipse.ui.views.markers.MarkerField.annotateImage(MarkerField.java:86)
+	at org.eclipse.ui.internal.views.markers.MarkerProblemSeverityAndMessageField.update(MarkerProblemSeverityAndMessageField.java:78)
+	at org.eclipse.ui.internal.views.markers.MarkerColumnLabelProvider.update(MarkerColumnLabelProvider.java:54)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:149)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:973)
+	at org.eclipse.ui.internal.views.markers.MarkersTreeViewer.doUpdateItem(MarkersTreeViewer.java:62)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:131)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1046)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:426)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2857)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1970)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1976)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1943)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1900)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$3(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:533)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1447)
+	at org.eclipse.ui.internal.views.markers.UIUpdateJob.runInUIThread(UIUpdateJob.java:102)
+	at org.eclipse.ui.progress.UIJob.lambda$0(UIJob.java:148)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4047)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3663)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY org.eclipse.lsp4e 4 0 2025-04-11 13:54:26.910
+!MESSAGE Marker id 755 not found.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/mystore/pom.xml)[376]: java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttribute(Marker.java:108)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.hasResolutions(LSPCodeActionMarkerResolution.java:209)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolution(MarkerHelpRegistry.java:263)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolutions(MarkerHelpRegistry.java:236)
+	at org.eclipse.ui.views.markers.MarkerField.annotateImage(MarkerField.java:86)
+	at org.eclipse.ui.internal.views.markers.MarkerProblemSeverityAndMessageField.update(MarkerProblemSeverityAndMessageField.java:78)
+	at org.eclipse.ui.internal.views.markers.MarkerColumnLabelProvider.update(MarkerColumnLabelProvider.java:54)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:149)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:973)
+	at org.eclipse.ui.internal.views.markers.MarkersTreeViewer.doUpdateItem(MarkersTreeViewer.java:62)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:131)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1046)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:426)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2857)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1970)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1976)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1943)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1900)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$3(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:533)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1447)
+	at org.eclipse.ui.internal.views.markers.UIUpdateJob.runInUIThread(UIUpdateJob.java:102)
+	at org.eclipse.ui.progress.UIJob.lambda$0(UIJob.java:148)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4047)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3663)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+!SUBENTRY 1 org.eclipse.core.resources 4 376 2025-04-11 13:54:26.912
+!MESSAGE Marker id 755 not found.
+!STACK 0
+java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttribute(Marker.java:108)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.hasResolutions(LSPCodeActionMarkerResolution.java:209)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolution(MarkerHelpRegistry.java:263)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolutions(MarkerHelpRegistry.java:236)
+	at org.eclipse.ui.views.markers.MarkerField.annotateImage(MarkerField.java:86)
+	at org.eclipse.ui.internal.views.markers.MarkerProblemSeverityAndMessageField.update(MarkerProblemSeverityAndMessageField.java:78)
+	at org.eclipse.ui.internal.views.markers.MarkerColumnLabelProvider.update(MarkerColumnLabelProvider.java:54)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:149)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:973)
+	at org.eclipse.ui.internal.views.markers.MarkersTreeViewer.doUpdateItem(MarkersTreeViewer.java:62)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:131)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1046)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:426)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2857)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1970)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1976)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1943)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1900)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$3(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:533)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1447)
+	at org.eclipse.ui.internal.views.markers.UIUpdateJob.runInUIThread(UIUpdateJob.java:102)
+	at org.eclipse.ui.progress.UIJob.lambda$0(UIJob.java:148)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4047)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3663)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY org.eclipse.lsp4e 4 0 2025-04-11 13:54:26.943
+!MESSAGE Marker id 755 not found.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/mystore/pom.xml)[376]: java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.setAttribute(Marker.java:260)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.lambda$7(LSPCodeActionMarkerResolution.java:141)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.postFire(CompletableFuture.java:614)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:653)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+!SUBENTRY 1 org.eclipse.core.resources 4 376 2025-04-11 13:54:26.943
+!MESSAGE Marker id 755 not found.
+!STACK 0
+java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.setAttribute(Marker.java:260)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.lambda$7(LSPCodeActionMarkerResolution.java:141)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.postFire(CompletableFuture.java:614)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:653)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.eclipse.lsp4e 4 0 2025-04-11 13:54:29.905
+!MESSAGE Marker id 757 not found.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/mystore/pom.xml)[376]: java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.setAttribute(Marker.java:260)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.lambda$7(LSPCodeActionMarkerResolution.java:141)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.postFire(CompletableFuture.java:614)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:653)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+!SUBENTRY 1 org.eclipse.core.resources 4 376 2025-04-11 13:54:29.905
+!MESSAGE Marker id 757 not found.
+!STACK 0
+java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.setAttribute(Marker.java:260)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.lambda$7(LSPCodeActionMarkerResolution.java:141)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.postFire(CompletableFuture.java:614)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:653)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.eclipse.lsp4e 4 0 2025-04-11 13:54:29.905
+!MESSAGE Marker id 757 not found.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/mystore/pom.xml)[376]: java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttribute(Marker.java:108)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.hasResolutions(LSPCodeActionMarkerResolution.java:209)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolution(MarkerHelpRegistry.java:263)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolutions(MarkerHelpRegistry.java:236)
+	at org.eclipse.ui.views.markers.MarkerField.annotateImage(MarkerField.java:86)
+	at org.eclipse.ui.internal.views.markers.MarkerProblemSeverityAndMessageField.update(MarkerProblemSeverityAndMessageField.java:78)
+	at org.eclipse.ui.internal.views.markers.MarkerColumnLabelProvider.update(MarkerColumnLabelProvider.java:54)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:149)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:973)
+	at org.eclipse.ui.internal.views.markers.MarkersTreeViewer.doUpdateItem(MarkersTreeViewer.java:62)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:131)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1046)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:426)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2857)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1970)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1976)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1943)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1900)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$3(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:533)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1447)
+	at org.eclipse.ui.internal.views.markers.UIUpdateJob.runInUIThread(UIUpdateJob.java:102)
+	at org.eclipse.ui.progress.UIJob.lambda$0(UIJob.java:148)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4047)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3663)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+!SUBENTRY 1 org.eclipse.core.resources 4 376 2025-04-11 13:54:29.905
+!MESSAGE Marker id 757 not found.
+!STACK 0
+java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttribute(Marker.java:108)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.hasResolutions(LSPCodeActionMarkerResolution.java:209)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolution(MarkerHelpRegistry.java:263)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.hasResolutions(MarkerHelpRegistry.java:236)
+	at org.eclipse.ui.views.markers.MarkerField.annotateImage(MarkerField.java:86)
+	at org.eclipse.ui.internal.views.markers.MarkerProblemSeverityAndMessageField.update(MarkerProblemSeverityAndMessageField.java:78)
+	at org.eclipse.ui.internal.views.markers.MarkerColumnLabelProvider.update(MarkerColumnLabelProvider.java:54)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:149)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:973)
+	at org.eclipse.ui.internal.views.markers.MarkersTreeViewer.doUpdateItem(MarkersTreeViewer.java:62)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:131)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1046)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:426)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updateChildren(AbstractTreeViewer.java:2857)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1970)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefreshStruct(AbstractTreeViewer.java:1976)
+	at org.eclipse.jface.viewers.TreeViewer.internalRefreshStruct(TreeViewer.java:684)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1943)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalRefresh(AbstractTreeViewer.java:1900)
+	at org.eclipse.jface.viewers.StructuredViewer.lambda$3(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1486)
+	at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:533)
+	at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1447)
+	at org.eclipse.ui.internal.views.markers.UIUpdateJob.runInUIThread(UIUpdateJob.java:102)
+	at org.eclipse.ui.progress.UIJob.lambda$0(UIJob.java:148)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4047)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3663)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY org.eclipse.pde.core 4 0 2025-04-11 16:42:34.903
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:913)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	... 13 more
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more
+Root exception:
+java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:604)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:549)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:1018)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1043)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:380)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:893)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:885)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2115)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1985)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:83)
+	... 25 more

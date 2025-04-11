@@ -16,10 +16,14 @@ import { ApiDecreaseItemInCart } from "../../apiService/ApiDecreaseItemInCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { ApiDeleteItemInCart } from "../../apiService/ApiDeleteItemInCart";
+import { useAuth } from "../../context/AuthContext";
 
 function Cart() {
   const navigate = useNavigate();
-  const { idUser } = useParams();
+  const authContext = useAuth();
+  const idUser = authContext.idUser;
+
+  console.log(idUser, "idUser in cart");
 
   const [DataCartUser, setDataCartUser] = useState([]);
   const [totalItem, setTotalItem] = useState();

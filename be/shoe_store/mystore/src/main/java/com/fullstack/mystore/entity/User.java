@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fullstack.mystore.enums.Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,7 +46,10 @@ public class User {
 	private String phone;
 	private String username;
 	private String password;
-	private Integer role;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private Role role;
 	
 	@OneToMany(mappedBy = "user")
 	@JsonBackReference
@@ -114,13 +120,7 @@ public class User {
 		this.password = password;
 	}
 
-	public Integer getRole() {
-		return role;
-	}
 
-	public void setRole(Integer role) {
-		this.role = role;
-	}
 
 	public List<ShoppingCart> getShoppingCarts() {
 		return shoppingCarts;
@@ -145,5 +145,16 @@ public class User {
 	public void setPayments(List<Payment> payments) {
 		this.payments = payments;
 	}
+
+
+	public Role getRole() {
+		return role;
+	}
+
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
 	
 }

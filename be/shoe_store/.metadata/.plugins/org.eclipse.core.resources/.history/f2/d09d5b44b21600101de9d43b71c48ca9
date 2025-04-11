@@ -1,0 +1,46 @@
+package com.fullstack.mystore.controller;
+
+import com.fullstack.mystore.dto.AuthRequest;
+import com.fullstack.mystore.dto.AuthResponse;
+import com.fullstack.mystore.entity.User;
+import com.fullstack.mystore.jwt.JwtService;
+import com.fullstack.mystore.repository.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping
+@CrossOrigin(origins = "*")
+public class AuthController {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticate(@RequestBody AuthRequest request) {
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
+        );
+
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        String token = jwtService.generateToken(user);
+        return ResponseEntity.ok(new AuthResponse(token));
+    }
+}
