@@ -15,7 +15,7 @@ public class ShoppingCartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private int quantity;
+	private Integer quantity;
 	
 	@ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
@@ -26,6 +26,9 @@ public class ShoppingCartItem {
 	@JsonIgnore
     private ShoppingCart shoppingCart;
 
+	
+	public ShoppingCartItem() {}
+	
 	public Integer getId() {
 		return id;
 	}

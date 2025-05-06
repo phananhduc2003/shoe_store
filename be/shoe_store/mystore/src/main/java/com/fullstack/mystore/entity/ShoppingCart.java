@@ -1,5 +1,6 @@
 package com.fullstack.mystore.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,7 +35,7 @@ public class ShoppingCart {
     
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<ShoppingCartItem> items;
+    private List<ShoppingCartItem> items = new ArrayList<>();
     
     public Integer getId() {
 		return id;
