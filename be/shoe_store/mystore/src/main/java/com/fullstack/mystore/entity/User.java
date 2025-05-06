@@ -1,5 +1,6 @@
 package com.fullstack.mystore.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,7 +28,7 @@ public class User {
 	
 	
 	public User(Integer userId) {
-		// TODO Auto-generated constructor stub
+	    this.id = userId;
 	}
 
 	@Id
@@ -44,7 +45,10 @@ public class User {
 	
 	@Column(length = 10, nullable = true)
 	private String phone;
-	private String username;
+	private String username; 
+	
+	@JsonIgnore
+	@Column(length = 255, nullable = false)
 	private String password;
 	
 	@Enumerated(EnumType.STRING)
@@ -53,15 +57,15 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	@JsonBackReference
-    private List<ShoppingCart> shoppingCarts;
+	private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "user")
 	@JsonBackReference
-    private List<ShopOrder> shopOrders;
+	private List<ShopOrder> shopOrders = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore
-    private List<Payment> payments;
+	private List<Payment> payments = new ArrayList<>();
 
 	public Integer getId() {
 		return id;

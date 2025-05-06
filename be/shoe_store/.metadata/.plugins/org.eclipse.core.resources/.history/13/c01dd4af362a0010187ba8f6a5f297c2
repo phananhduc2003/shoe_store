@@ -1,0 +1,17 @@
+spring.application.name=restful-web-services
+logging.level.org.springframework=debug
+
+spring.datasource.url=jdbc:mysql://localhost:3306/mystore
+spring.datasource.username=root
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+vnpay.tmn-code = R3CL7ZI1
+vnpay.hash-secret = YSJH598OZMTOYVFWM3WRNH7BYXSQGJ7V
+vnpay.pay-url = https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+vnpay.return-url = http://localhost:8080/api/payment/vnpay-return
+
+jwt.secret=qJZq7JdQlEjfPZgVwYzFf9VmsOaUq1yoqZ9MaWw0Eo4=

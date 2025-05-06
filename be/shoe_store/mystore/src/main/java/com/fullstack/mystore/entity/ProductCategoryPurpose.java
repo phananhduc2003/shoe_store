@@ -1,6 +1,7 @@
 package com.fullstack.mystore.entity;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -22,7 +23,7 @@ public class ProductCategoryPurpose {
     private String purposeName;
 
     @OneToMany(mappedBy = "productCategoryPurpose")
-    private Set<ProductCategoryBrandPurpose> productCategoryBrandPurposes;
+    private Set<ProductCategoryBrandPurpose> productCategoryBrandPurposes = new HashSet<>();
 	 
 	public Integer getId() {
 		return id;
